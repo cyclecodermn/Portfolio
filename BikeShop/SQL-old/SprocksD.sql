@@ -1,0 +1,328 @@
+USE GuildCars1
+
+-- -  -   -    -     -      -       -        -
+-- I followed the video to create the procedure below
+-- but I probably won't use it since it relates more to
+-- ShackUp than Guild Bikes. The FeaturedBike procedure 
+-- is derived from the 1 below and is used.
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikesRecentlyAdded')
+		DROP PROCEDURE BikesRecentlyAdded
+GO
+
+CREATE PROCEDURE BikesRecentlyAdded AS
+BEGIN
+	SELECT TOP 5 BikeFrameId, BikeFrame 
+	FROM BikeFrameTable
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'FramesSelectAll')
+		DROP PROCEDURE FramesSelectAll
+GO
+
+CREATE PROCEDURE FramesSelectAll AS
+BEGIN
+	SELECT BikeFrameId, BikeFrame 
+	FROM BikeFrameTable
+END
+GO
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'ModelsSelectAll')
+		DROP PROCEDURE ModelsSelectAll
+GO
+
+CREATE PROCEDURE ModelsSelectAll AS
+BEGIN
+	SELECT BikeModelId, BikeModel 
+	FROM BikeModelTable
+END
+GO
+-- -  -   -    -     -      -       -        -
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'DbReset')
+		DROP PROCEDURE DbReset
+GO
+
+CREATE PROCEDURE DbReset AS
+BEGIN
+
+	DELETE FROM FeatureTable;
+	DELETE FROM PurchasedTable;
+	DELETE FROM BikeTable;
+	DELETE FROM BikeFrameTable;
+	DELETE FROM SpecialTable;
+	DELETE FROM BikeColorTable;
+	DELETE FROM BikeMakeTable;
+	DELETE FROM BikeModelTable;
+
+	DELETE FROM AspNetUsers;
+	DELETE FROM BikeTable;
+
+ DBCC CHECKIDENT('BikeTable', RESEED, 1)
+
+-- -  -   -    -     -      -       -        -
+	SET IDENTITY_INSERT BikeFrameTable ON;
+	
+	INSERT INTO BikeFrameTable (BikeFrameId, BikeFrame)
+	VALUES
+	(1,'Touring'),
+	(2,'Road'),
+	(3,'Hybrid');
+
+	SET IDENTITY_INSERT BikeFrameTable OFF;
+
+-- -  -   -    -     -      -       -        -
+	SET IDENTITY_INSERT SpecialTable ON;
+	
+	INSERT INTO SpecialTable (SpecialId, SpecialTitle, SpecialDescription)
+	VALUES
+	(1,'Summer Sale','With summer here, it is a perfect time to try a new bike.'),
+	(2,'Fall Color Clearance', 'The leaves are falling and so are our prices.'),
+	(3,'Santa Special','Come in and talk with Santa about bringing a bike down your chimney.');
+
+	SET IDENTITY_INSERT SpecialTable OFF;
+-- -  -   -    -     -      -       -        -
+	SET IDENTITY_INSERT BikeColorTable ON;
+	
+	INSERT INTO BikeColorTable (BikeColorId, BikeColor)
+	VALUES
+	(1,'White'),
+	(2,'Light Grey'),
+	(3,'Grey'),
+	(4,'Dark Grey'),
+	(5,'Charchol');
+
+	SET IDENTITY_INSERT BikeColorTable OFF;
+-- -  -   -    -     -      -       -        -
+	SET IDENTITY_INSERT BikeMakeTable ON;
+	
+	INSERT INTO BikeMakeTable (BikeMakeId, BikeMake)
+	VALUES
+	(1,'Giant'),
+	(2,'Surley'),
+	(3,'Trek');
+
+	SET IDENTITY_INSERT BikeMakeTable OFF;
+-- -  -   -    -     -      -       -        -
+	
+	SET IDENTITY_INSERT BikeModelTable ON;
+	
+	INSERT INTO BikeModelTable (BikeModelId, BikeMakelId, BikeModel)
+	VALUES
+	(1,1,'Long Haul Trucker'),
+	(2,2,'RidgeBack'),
+	(3,3,'520');
+
+	SET IDENTITY_INSERT BikeModelTable OFF;
+-- -  -   -    -     -      -       -        -
+	INSERT INTO AspNetUsers(Id, firstName, lastName, EmailConfirmed, PhoneNumberConfirmed, Email,TwoFactorEnabled, LockoutEnabled, AccessFailedCount, UserName)
+	VALUES('00000000-0000-0000-0000-000000000000', 'James', 'Carter', 0, 0, 'test@test.com', 0, 0, 0, 'test');
+-- -  -   -    -     -      -       -        -
+	SET IDENTITY_INSERT BikeTable ON;
+
+	INSERT INTO 
+	BikeTable(BikeId,BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,
+	BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,
+	BikeDescription,BikeDateAdded,BikePictName)
+	VALUES 
+	(1,2,1,2,1,1,1111.00,1100.00,2019,1,10,18,1111111,'Fresh out of the box',GETDATE(),'LongHaulTruckerPic1.jpg'),
+	(2,3,2,3,2,3,2222.00,2200.00,2012,0,4,18,2222222,'Very ok',GETDATE(),'Bike2Pic.jpg');
+
+	SET IDENTITY_INSERT BikeTable OFF;
+
+-- -  -   -    -     -      -       -        -
+	SET IDENTITY_INSERT FeatureTable ON;
+	
+	INSERT INTO FeatureTable (FeatureId, BikeId, FeatureDescription)
+	VALUES
+	(1,1,'This is a description for featured bike number 1'),
+	(2,2,'This is a description for featured bike number 2')
+
+	SET IDENTITY_INSERT FeatureTable OFF;
+
+-- -  -   -    -     -      -       -        -
+
+	SET IDENTITY_INSERT PurchasedTable ON;
+
+	INSERT INTO
+	PurchasedTable(PurchaseSaleId,BikeId,PurchasedPrice,PurchCustFirst,PurchCustLast,PurchCustPhone,PurchCustAddress1,PurchCustAddress2,PurchCustCity,PurchCustState,PurchCustPostCode,PurchFinType)
+	VALUES
+	(1,1,1000,'Sandy','Mier','651-123-0987','111 Grand Ave','','St. Paul','MN','55105','Cash');
+
+	SET IDENTITY_INSERT PurchasedTable OFF;
+
+END
+GO
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikeInsert')
+		DROP PROCEDURE BikeInsert
+GO
+
+
+CREATE PROCEDURE BikeInsert (
+	@BikeId				int output,
+	@BikeMakeId			int,
+	@BikeModelId		int,	
+	@BikeFrameColorId	int,	
+	@BikeTrimColorId	int,
+	@BikeFrameId		int,
+	@BikeMsrp			money,
+	@BikeListPrice		money,
+	@BikeYear			int,
+	@BikeIsNew			binary(1),
+	@BikeCondition		int,
+	@BikeNumGears		int,
+	@BikeSerialNum		char(20),
+	@BikeDescription	text,
+	@BikeDateAdded		date,
+	@BikePictName		varchar(64)
+) AS
+BEGIN
+	INSERT INTO BikeTable (BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikeDateAdded,BikePictName)
+	
+	VALUES (@BikeMakeId, @BikeModelId, @BikeFrameColorId, @BikeTrimColorId, @BikeFrameId, @BikeMsrp, @BikeListPrice, @BikeYear, @BikeIsNew, @BikeCondition, @BikeNumGears, @BikeSerialNum, @BikeDescription, @BikeDateAdded, @BikePictName);
+	
+	SET @BikeId=SCOPE_IDENTITY();
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikeUpdate')
+		DROP PROCEDURE BikeUpdate
+GO
+
+CREATE PROCEDURE BikeUpdate (
+	@BikeId				int,
+	@BikeMakeId			int,
+	@BikeModelId		int,	
+	@BikeFrameColorId	int,	
+	@BikeTrimColorId	int,
+	@BikeFrameId		int,
+	@BikeMsrp			money,
+	@BikeListPrice		money,
+	@BikeYear			int,
+	@BikeIsNew			binary(1),
+	@BikeCondition		int,
+	@BikeNumGears		int,
+	@BikeSerialNum		char(20),
+	@BikeDescription	text,
+	@BikeDateAdded		date,
+	@BikePictName		char(64)
+) AS
+BEGIN
+	UPDATE BikeTable SET
+		BikeMakeId			= @BikeMakeId,
+		BikeModelId			= @BikeModelId,
+		BikeFrameColorId	= @BikeFrameColorId,
+		BikeTrimColorId		= @BikeTrimColorId,
+		BikeFrameId			= @BikeFrameId,
+		BikeMsrp			= @BikeMsrp,
+		BikeListPrice		= @BikeListPrice,
+		BikeYear			= @BikeYear,
+		BikeIsNew			= @BikeIsNew,
+		BikeCondition		= @BikeCondition,
+		BikeNumGears		= @BikeNumGears,
+		BikeSerialNum		= @BikeSerialNum,
+		BikeDescription		= @BikeDescription,
+		BikeDateAdded		= @BikeDateAdded,
+		BikePictName		= @BikePictName
+	WHERE BikeId = @BikeId;
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikeDelete')
+		DROP PROCEDURE BikeDelete
+GO
+-- -  -   -    -     -      -       -        -
+ 
+CREATE PROCEDURE BikeDelete (
+	@BikeId int
+) AS
+BEGIN
+	BEGIN TRANSACTION
+	
+	DELETE FROM PurchasedTable WHERE BikeId = @BikeId;
+	DELETE FROM FeatureTable WHERE BikeId = @BikeId;
+	DELETE FROM BikeTable WHERE BikeId = @BikeId;
+	
+	COMMIT TRANSACTION
+END
+GO
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'BikeSelect')
+		DROP PROCEDURE BikeSelect
+GO
+-- -  -   -    -     -      -       -        -
+
+CREATE PROCEDURE BikeSelect (
+	@BikeId int
+) AS
+BEGIN
+SELECT BikeMakeId,BikeModelId,BikeFrameColorId,BikeTrimColorId,BikeFrameId,BikeMsrp,BikeListPrice,BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
+	FROM BikeTable
+	WHERE BikeId = @BikeId
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'OneBikeDetails')
+		DROP PROCEDURE OneBikeDetails
+GO
+-- -  -   -    -     -      -       -        -
+
+CREATE PROCEDURE OneBikeDetails (
+	@BikeId int
+) AS
+BEGIN
+
+SELECT	BikeMake,BikeModel, c.BikeColor AS frameColor,  
+		ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice,
+		BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
+	FROM BikeTable bt
+		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
+		INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
+		INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
+
+		INNER JOIN BikeColorTable c ON c.BikeColorId = bt.BikeFrameColorId
+		INNER JOIN BikeColorTable ct ON ct.BikeColorId = bt.BikeTrimColorId
+		
+	WHERE BikeId = @BikeId
+END
+
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'GetFeaturedBikes')
+		DROP PROCEDURE GetFeaturedBikes
+GO
+
+--CREATE PROCEDURE GetFeaturedBikes AS
+--BEGIN
+--SELECT	FeatureId, BikeId, BikeYear BikeMake,BikeModel, BikeListPrice, BikePictName
+--	FROM FeatureTable ft
+--		INNER JOIN BikeTable bt ON bt.BikeId = ft.BikeId
+--		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
+--		INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
+--		INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId 
+--END
+--GO
+

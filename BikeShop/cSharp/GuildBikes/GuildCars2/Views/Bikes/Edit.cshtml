@@ -1,0 +1,121 @@
+﻿@model bikes.models.VMs.BikeEditViewModel
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+<div class="row">
+
+
+    <div class="col-xs-12">
+
+
+        <h2>Edit Bike</h2>
+        @using (Html.BeginForm("Edit", "Bikes", FormMethod.Post, new { enctype = "multipart/form-data", id = "formEditBike" }))
+        {
+
+            @Html.ValidationSummary()
+            @Html.HiddenFor(m => m.Bike.BikeId)
+            <div class="col-sm-12 col-md-6">
+                <div class="form-group">
+                    <label>Make</label>
+                    @Html.DropDownListFor(m => m.Bike.BikeMakeId, Model.BikeMakes, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Model</label>
+                    @Html.DropDownListFor(m => m.Bike.BikeModelId, Model.BikeModels, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    @Html.DropDownListFor(m => m.Bike.BikeYear, Model.BikeYearItems, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>Condition</label>
+                    @Html.DropDownListFor(m => m.Bike.BikeCondition, Model.ConditionItems, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>MSRP</label>
+                    @Html.TextBoxFor(m => m.Bike.BikeMsrp, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>List Price</label>
+                    @Html.TextBoxFor(m => m.Bike.BikeListPrice, new { @class = "form-control" })
+                </div>
+
+                <div class="checkbox">
+                    <label>
+                        @Html.CheckBoxFor(m => m.Bike.BikeIsNew) New
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label>Frame Type</label>
+                    @Html.DropDownListFor(m => m.Bike.BikeFrameId, Model.BikeFrames, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>Frame Color</label>
+                    @Html.DropDownListFor(m => m.Bike.BikeFrameColorId, Model.BikeColors, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>Trim Color</label>
+                    @Html.DropDownListFor(m => m.Bike.BikeTrimColorId, Model.BikeColors, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6">
+
+                <div class="form-group">
+                    <label>Number of Gears</label>
+                    @Html.DropDownListFor(m => m.Bike.BikeNumGears, Model.BikeGearItems, new { @class = "form-control" })
+                </div>
+
+                <div class="form-group">
+                    <label>Serial Number</label>
+                    @Html.TextBoxFor(m => m.Bike.BikeSerialNum, new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label>Description</label>
+                    @Html.TextAreaFor(m => m.Bike.BikeDescription, new { @class = "form-control" })
+                </div>
+                <img src="@Url.Content("~/Images/" + Model.Bike.BikePictName)" height="300" width="300" />
+                <div class="form-group">
+                    <label>Replace Image</label>
+                    <input id="ImageUpload" name="ImageUpload" type="file" class="form-control" />
+                </div>
+            </div>
+            <button class="btn btn-primary">Save</button>
+
+        }
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#frmAddBike').validate({
+                rules: {
+                    'Bike.BikeMsrp': {
+                        required: true,
+                        number: true,
+                        min: 1
+                    },
+                    'Bike.BikeListPrice': {
+                        required: true,
+                        number: true,
+                        min: 1
+                    },
+                    'Bike.BikeSerialNum': {
+                        required: true
+                    },
+                }
+            });
+        });
+    </script>
+}

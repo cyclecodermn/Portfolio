@@ -1,0 +1,47 @@
+﻿@using bikes.models.Tables
+@model IEnumerable<bikes.models.Tables.SpecialTable>
+
+@{
+    ViewBag.Title = "Specials";
+}
+
+<h2>Specials</h2>
+
+@{
+    foreach (SpecialTable special in Model)
+    {
+        <h3>@special.SpecialTitle</h3>
+        @special.SpecialDescription
+        <br />
+    }
+
+    foreach (SpecialTable special in Model)
+
+    {
+        <div class="col-xs-3">
+            <b>@special.SpecialId</b>
+        </div>
+
+        <div class="col-xs-3">
+            <b>@special.SpecialTitle</b>
+        </div>
+
+        <div class="col-xs-3">
+            @special.SpecialDescription
+        </div>
+
+        <div class="col-xs-3">
+            @DateTime.Now;
+        </div>
+         <div class="col-xs-12">
+        </div>
+        <br/>
+        <p></p>
+
+    }
+    <div class="col-xs-12">
+    </div>
+    <br/>
+    <p></p>
+
+}

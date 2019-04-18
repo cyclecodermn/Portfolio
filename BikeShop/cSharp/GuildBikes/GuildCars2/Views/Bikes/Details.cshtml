@@ -1,0 +1,51 @@
+﻿@model bikes.models.Queries.InvDetailedItem
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Bike Details</h2>
+
+<div class="row">
+    <div class="col-xs-12">
+        <h3>Featured Bikes</h3>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-4">
+        <img src="@Url.Content("~/Images/" + Model.BikePictName)" height="300" width="300" />
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-4">
+
+        <table>
+            <trbody>
+                <tr>
+                    <td>Body Style: @Model.BikeFrame</td>
+                    <td>Frame Color: @Model.FrameColor</td>
+                    <td>Sale Price: @Model.BikeListPrice</td>
+                </tr>
+                <tr>
+                    <td>Gears: @Model.BikeNumGears</td>
+                    <td>Condition: @Model.BikeCondition</td>
+                    <td>MSRP: (Need to add)</td>
+                </tr>
+                <tr>
+                    <td>Trim Color: @Model.TrimColor</td>
+                    <td>Serial #:@Model.BikeSerialNum</td>
+                </tr>
+            </trbody>
+        </table>
+              
+        <table>
+            <trbody>
+                <tr><td>@Model.BikeDescription</td></tr>
+            </trbody>
+        </table>
+
+        <p></p>
+        <form>
+            @Html.ActionLink("Contact Us","Contact","Home",new { serialNo=Model.BikeSerialNum},new{@class="btn btn-primary"})
+        </form> 
+
+    </div>
+</div>

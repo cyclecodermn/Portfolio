@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="SGcars1" id="Project_1d3c521" template="Default" database="MySql" >
+	<schema name="sgcars1" schemaname="sgcars1" >
+		<table name="bodystyle" >
+			<column name="bodyid" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="body" type="char" length="64" jt="1" />
+			<index name="pk_bodystyle_bodyid" unique="PRIMARY_KEY" >
+				<column name="bodyid" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="colort" >
+			<column name="colorid" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="color" type="char" length="32" jt="1" />
+			<index name="pk_colort_colorid" unique="PRIMARY_KEY" >
+				<column name="colorid" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="make" >
+			<column name="makeid" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="make" type="varchar" length="32" jt="12" mandatory="y" />
+			<column name="userid" type="varchar" length="128" jt="12" mandatory="y" />
+			<index name="pk_make_makeid" unique="PRIMARY_KEY" >
+				<column name="makeid" />
+			</index>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="modelt" >
+			<column name="modelid" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="userid" type="varchar" length="128" jt="12" />
+			<index name="pk_modelt_modelid" unique="PRIMARY_KEY" >
+				<column name="modelid" />
+			</index>
+			<fk name="fk_modelt_make" to_schema="sgcars1" to_table="make" >
+				<fk_column name="modelid" pk="makeid" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+		<table name="vehicle" >
+			<column name="vehicleid" type="int" jt="4" mandatory="y" autoincrement="y" />
+			<column name="msrp" type="int" jt="4" mandatory="y" />
+			<column name="year" type="int" jt="4" mandatory="y" />
+			<column name="isnew" type="binary" length="1" jt="-2" />
+			<column name="isautom" type="binary" length="1" jt="-2" />
+			<column name="miles" type="int" jt="4" />
+			<column name="vin" type="char" length="20" jt="1" mandatory="y" />
+			<column name="description" type="text" jt="-1" mandatory="y" />
+			<column name="dateadded" type="date" jt="91" >
+				<defo>CURRENT_DATE</defo>
+			</column>
+			<column name="pictpath" type="char" length="256" jt="1" />
+			<index name="pk_vehicle_vehicleid" unique="PRIMARY_KEY" >
+				<column name="vehicleid" />
+			</index>
+			<fk name="fk_vehicle_make" to_schema="sgcars1" to_table="make" >
+				<fk_column name="vehicleid" pk="makeid" />
+			</fk>
+			<fk name="fk_vehicle_modelt" to_schema="sgcars1" to_table="modelt" >
+				<fk_column name="vehicleid" pk="modelid" />
+			</fk>
+			<fk name="fk_interior_vehicle_colort" to_schema="sgcars1" to_table="colort" >
+				<fk_column name="vehicleid" pk="colorid" />
+			</fk>
+			<fk name="fk_exterior_vehicle_colort" to_schema="sgcars1" to_table="colort" >
+				<fk_column name="vehicleid" pk="colorid" />
+			</fk>
+			<fk name="fk_vehicle_bodystyle" to_schema="sgcars1" to_table="bodystyle" >
+				<fk_column name="vehicleid" pk="bodyid" />
+			</fk>
+			<storage><![CDATA[engine=InnoDB]]></storage>
+		</table>
+	</schema>
+	<layout name="Default Layout" id="Layout_44e63fc" show_relation="columns" >
+		<entity schema="sgcars1" name="vehicle" color="C1D8EE" x="608" y="288" />
+		<entity schema="sgcars1" name="colort" color="C1D8EE" x="288" y="448" />
+		<entity schema="sgcars1" name="bodystyle" color="C1D8EE" x="400" y="272" />
+		<entity schema="sgcars1" name="make" color="C1D8EE" x="272" y="240" />
+		<entity schema="sgcars1" name="modelt" color="C1D8EE" x="592" y="160" />
+		<callout x="48" y="48" pointer="NO" >
+			<comment><![CDATA[This project is in offline mode.
+Design the schema and save the design to project file. Later create or upgrade the schema on any database.
+Right-click the layout to add new tables. Drop this callout from its right-click pop-up menu.]]></comment>
+		</callout>
+	</layout>
+</project>
