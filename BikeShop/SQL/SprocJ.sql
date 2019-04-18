@@ -183,7 +183,7 @@ delete from BikeColorTable ;
 	INSERT INTO BikeColorTable (BikeColorId, BikeColor)
 	VALUES
 	(1,'Red'),
-	(2,'Yello'),
+	(2,'Yellow'),
 	(3,'Blue'),
 	(4,'Green'),
 	(5,'Orange'),
@@ -254,10 +254,10 @@ delete from FeatureTable;
 	INSERT INTO FeatureTable (FeatureId, BikeId, FeatureDescription)
 	VALUES
 	(1,1,'This is a description for featured bike number 1'),
-	(2,3,'This is a description for featured bike number 2'),
-	(3,5,'This is a description for featured bike number 3'),
-	(4,7,'This is a description for featured bike number 4'),
-	(5,9,'This is a description for featured bike number 5');
+	(2,2,'This is a description for featured bike number 2'),
+	(3,3,'This is a description for featured bike number 3'),
+	(4,8,'This is a description for featured bike number 4'),
+	(5,10,'This is a description for featured bike number 5');
 
 	SET IDENTITY_INSERT FeatureTable OFF;
 
