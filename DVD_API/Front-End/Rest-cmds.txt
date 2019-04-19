@@ -1,0 +1,39 @@
+C:\Users\steve\OneDrive\Work\sGuild\Git-Repo\Week09 Assignment\Front-End\Lesson6
+
+[
+    {
+        "contactId": 0,
+        "firstName": "John",
+        "lastName": "Doe",
+        "company": "Oracle",
+        "phone": "555-1212",
+        "email": "jd@oracle.com"
+    },
+    {
+        "contactId": 1,
+        "firstName": "Sally",
+        "lastName": "Smith",
+        "company": "Microsoft",
+        "phone": "345-8756",
+        "email": "sally@ms.com"
+    }
+]
+
+[
+    {
+        "dvdId": 0,
+        "title": "A Great Tale",
+        "realeaseYear": 2015,
+        "director": "Sam Jones",
+        "rating": "PG",
+        "notes": "This really is a great tale!"
+    },
+    {
+        "dvdId": 1,
+        "title": "A Good Tale",
+        "realeaseYear": 2012,
+        "director": "Joe Smith",
+        "rating": "PG-13",
+        "notes": "This is a good tale!"
+    }
+]

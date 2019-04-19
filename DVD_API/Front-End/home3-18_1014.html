@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Company Contacts</title>
+        <!-- Bootstrap core CSS -->
+        <link href="css/bootstrap.css"
+              rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <h1>DVD Library</h1>
+            <hr/>
+            <div class="form-group">
+                <div class="col-md-offset-4 col-md-8">
+                    <button type="button"
+                            id="search-button"
+                            class="btn btn-default">
+                        Search
+                    </button>
+                </div>
+
+
+                <div class="col-md-8">
+                    <input type="text"
+                           class="form-control"
+                           id="search-text"
+                           placeholder="Search Term">
+                </div>
+
+
+            </div>
+
+            <ul class="list-group" id="errorMessages"></ul>
+            <!--
+            Add a row to our container - this will hold the summary table and the new contact form.
+            -->
+            <div class="row">
+                <!-- #2: Add a col to hold the summary table - have it take up half the row -->
+                <div class="col-md-6">
+                    <div id="contactTableDiv">
+                        <h2>My DVDs</h2>
+
+                        <table id="contactTable" class="table table-hover">
+                            <tr>
+                                <th >Title</th>
+                                <th >Year</th>
+                                <th >Director</th>
+                                <th ></th>
+                                <th ></th>
+                                <!-- <th width="40%">Contact Name</th>
+                                <th width="30%">Company</th>
+                                <th width="15%"></th>
+                                <th width="15%"></th> -->
+                            </tr>
+                            <!--
+                             #3: This holds the list of contacts - we will add rows
+                            dynamically
+                             using jQuery
+                             -->
+                            <tbody id="contentRows"></tbody>
+                        </table>
+                    </div>
+                    <div id="editFormDiv" style="display: none">
+                        <h2>Edit DVD Details</h2>
+
+                        <form class="form-horizontal" role="form" id="edit-form">
+                            <div class="form-group">
+                                <label for="edit-title" class="col-md-4 control-label">
+                                    Title:
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="edit-title"
+                                           placeholder="Title" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-year" class="col-md-4 control-label">
+                                    Year:
+                                </label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="edit-year"
+                                           placeholder="Year" required/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit-director" class="col-md-4 control-label">
+                                    Director:</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="edit-director"
+                                           placeholder="Director"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="edit-rating" class="col-md-4 control-label">
+                                    Rating:</label>
+
+                                <div class="col-md-8">
+
+                            <select id='edit-rating' class="dropdown">
+                                <option value="G">G</option>
+                                <option value="PG">PG</option>
+                                <option value=PG-13>PG-13</option>
+                                <option value="R">R</option>
+                                <option value="NR">Not Rated</option>
+                            </select>
+
+                            </div>
+                            </div>
+                            <!-- <div class="form-group">
+                                <label for="edit-email" class="col-md-4 control-label">Email:</label>
+
+                                <div class="col-md-8">
+                                    <input type="email"
+                                           class="form-control"
+                                           id="edit-email"
+                                           placeholder="Email" required/>
+                                </div>
+                            </div> -->
+                            <div class="form-group">
+                                <label for="edit-notes" class="col-md-4 control-label">Notes:</label>
+
+                                <div class="col-md-8">
+                                    <input type="text"
+                                           class="form-control"
+                                           id="edit-notes"
+                                           placeholder="Notes"/>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-offset-4 col-md-4">
+                                    <input type="hidden" id="edit-dvd-id">
+                                    <button type="button"
+                                            id="edit-cancel-button"
+                                            class="btn btn-default"
+                                            onclick="hideEditForm()">
+                                        Cancel
+                                    </button>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="button"
+                                            id="edit-button"
+                                            class="btn btn-default">
+                                        Update Contact
+                                    </button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div> <!-- End col div -->
+                <!--
+                #4: Add col to hold the new contact form - have it take up the other half of the row
+                -->
+                <div id="addFormDiv" class="col-md-6">
+                    <h2>Add DVD</h2>
+
+                    <form class="form-horizontal" role="form" id="add-form">
+                        <div class="form-group">
+                            <label for="add-name" class="col-md-4 control-label">
+                                Title:
+                            </label>
+
+                            <div class="col-md-8">
+                                <input type="text"
+                                       class="form-control"
+                                       id="add-title"
+                                       placeholder="First Name" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="add-year" class="col-md-4 control-label">
+                                Year:
+                            </label>
+
+                            <div class="col-md-8">
+                                <input type="number"
+                                       class="form-control"
+                                       id="add-year"
+                                       placeholder="NNNN" required/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="add-director" class="col-md-4 control-label">
+                                Director:</label>
+
+                            <div class="col-md-8">
+                                <input type="text"
+                                       class="form-control"
+                                       id="add-director"
+                                       placeholder="Director"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="add-rating" class="col-md-4 control-label">
+                                Rating:</label>
+
+                            <div class="col-md-8">
+                        </div>
+                            <select id='add-rating' class="dropdown">
+                                <option value="G">G</option>
+                                <option value="PG">PG</option>
+                                <option value=PG-13>PG-13</option>
+                                <option value="R">R</option>
+                                <option value="NR">Not Rated</option>
+                            </select>
+                        </div>
+
+                        <!-- <div class="form-group">
+                            <label for="add-email" class="col-md-4 control-label">Email:</label>
+
+                            <div class="col-md-8">
+                                <input type="email"
+                                       class="form-control"
+                                       id="add-email"
+                                       placeholder="Email" required/>
+                            </div>
+                        </div> -->
+                        <div class="form-group">
+                            <label for="add-notes" class="col-md-4 control-label">Notes:</label>
+
+                            <div class="col-md-8">
+                                <input type="text"
+                                       class="form-control"
+                                       id="add-notes"
+                                       placeholder="Notes"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-4 col-md-8">
+                                <button type="button"
+                                        id="add-button"
+                                        class="btn btn-default">
+                                    Add DVD
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div> <!-- End col div -->
+            </div> <!-- End row div -->
+        </div>
+        <!-- #5: Placed at the end of the document so the pages load faster -->
+        <script src="js/jquery-2.2.4.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/contactList.js"></script>
+    </body>
+</html>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DvdRepoEFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="dvdMain">
+    <Key>
+      <PropertyRef Name="dvdid" />
+    </Key>
+    <Property Name="dvdid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="realeaseyear" Type="int" Nullable="false" />
+    <Property Name="director" Type="nvarchar" MaxLength="64" Nullable="false" />
+    <Property Name="rating" Type="char" MaxLength="4" Nullable="false" />
+    <Property Name="notes" Type="nvarchar" MaxLength="600" />
+  </EntityType>
+  <EntityContainer Name="DvdRepoEFModelStoreContainer">
+    <EntitySet Name="dvdMain" EntityType="Self.dvdMain" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

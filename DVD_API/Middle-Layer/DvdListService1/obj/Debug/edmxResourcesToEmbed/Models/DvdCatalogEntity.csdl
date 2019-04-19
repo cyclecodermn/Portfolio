@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DvdRepoEFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DVD">
+    <Key>
+      <PropertyRef Name="DvdId" />
+    </Key>
+    <Property Name="DvdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="realeaseYear" Type="Int32" Nullable="false" />
+    <Property Name="Director" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Rating" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="DvdRepoEFEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DVDs1" EntityType="DvdRepoEFModel.DVD" />
+  </EntityContainer>
+</Schema>

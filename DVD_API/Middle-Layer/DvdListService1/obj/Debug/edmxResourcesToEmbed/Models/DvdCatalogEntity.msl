@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DvdRepoEFModelStoreContainer" CdmEntityContainer="DvdRepoEFEntities">
+    <EntitySetMapping Name="DVDs1">
+      <EntityTypeMapping TypeName="DvdRepoEFModel.DVD">
+        <MappingFragment StoreEntitySet="dvdMain">
+          <ScalarProperty Name="DvdId" ColumnName="dvdid" />
+          <ScalarProperty Name="Title" ColumnName="title" />
+          <ScalarProperty Name="realeaseYear" ColumnName="realeaseyear" />
+          <ScalarProperty Name="Director" ColumnName="director" />
+          <ScalarProperty Name="Rating" ColumnName="rating" />
+          <ScalarProperty Name="Notes" ColumnName="notes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

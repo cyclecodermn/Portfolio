@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DvdRepoEFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="dvdMain">
+          <Key>
+            <PropertyRef Name="dvdid" />
+          </Key>
+          <Property Name="dvdid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="title" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="realeaseyear" Type="int" Nullable="false" />
+          <Property Name="director" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="rating" Type="char" MaxLength="4" Nullable="false" />
+          <Property Name="notes" Type="nvarchar" MaxLength="600" />
+        </EntityType>
+        <EntityContainer Name="DvdRepoEFModelStoreContainer">
+          <EntitySet Name="dvdMain" EntityType="Self.dvdMain" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DvdRepoEFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DVD">
+          <Key>
+            <PropertyRef Name="DvdId" />
+          </Key>
+          <Property Name="DvdId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="realeaseYear" Type="Int32" Nullable="false" />
+          <Property Name="Director" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Rating" Type="String" MaxLength="4" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="600" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="DvdRepoEFEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DVDs1" EntityType="DvdRepoEFModel.DVD" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DvdRepoEFModelStoreContainer" CdmEntityContainer="DvdRepoEFEntities">
+          <EntitySetMapping Name="DVDs1">
+            <EntityTypeMapping TypeName="DvdRepoEFModel.DVD">
+              <MappingFragment StoreEntitySet="dvdMain">
+                <ScalarProperty Name="DvdId" ColumnName="dvdid" />
+                <ScalarProperty Name="Title" ColumnName="title" />
+                <ScalarProperty Name="realeaseYear" ColumnName="realeaseyear" />
+                <ScalarProperty Name="Director" ColumnName="director" />
+                <ScalarProperty Name="Rating" ColumnName="rating" />
+                <ScalarProperty Name="Notes" ColumnName="notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
