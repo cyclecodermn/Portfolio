@@ -1,0 +1,2 @@
+﻿OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+1,Marie,OH,6.25,Carpet,222,2.25,499.50,466.20,499.50,466.20,60.356250,965.70

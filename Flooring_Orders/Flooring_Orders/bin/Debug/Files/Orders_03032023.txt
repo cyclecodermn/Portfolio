@@ -1,0 +1,3 @@
+﻿OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+1,Mary,PA,5.75,Tile,300,3.50,1050.00,315000.00,1050.00,315000.00,18172.875000,316050.00
+3,Fiona,MI,5.75,Laminate,122,1.75,213.50,26047.00,213.50,26047.00,1509.978750,26260.50

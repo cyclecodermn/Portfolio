@@ -1,0 +1,10 @@
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\bin\Debug\Orders.Models.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\bin\Debug\Orders.Models.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\bin\Debug\nunit.framework.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\bin\Debug\nunit.framework.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\bin\Debug\nunit.framework.xml
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\obj\Debug\Orders.Models.csprojAssemblyReference.cache
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\obj\Debug\Orders.Models.csproj.CoreCompileInputs.cache
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\obj\Debug\Orders.Models.csproj.CopyComplete
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\obj\Debug\Orders.Models.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Models\obj\Debug\Orders.Models.pdb

@@ -1,0 +1,18 @@
+
+Prev Version:
+- Orders are now being calculated from the largest order nums in the file.
+- Using files based on any future date is working at basic, and untested, levels.
+
+
+This Version:
+4 tests work
+
+Done
+- Save to files in the future
+- Save to different files based on date
+- Change output to decimal
+- Set output in format they're asking for.
+
+Next:
+- Test test repo <---------- Next
+- Add £ 

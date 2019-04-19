@@ -1,0 +1,2 @@
+﻿OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+1,Dan,OH,6.25,Carpet,111,2.25,249.75,233.10,249.75,233.10,30.178125,482.85

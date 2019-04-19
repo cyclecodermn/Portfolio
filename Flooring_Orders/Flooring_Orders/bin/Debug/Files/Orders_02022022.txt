@@ -1,0 +1,5 @@
+﻿OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+2,Wally,,6.25,Carpet,102,2.25,229.50,23409.00,229.50,23409.00,1477.406250,23638.50
+3,Sandy,PA,6.75,Laminate,222,1.75,388.50,86247.00,388.50,86247.00,5847.896250,86635.50
+6,Luke,MI,5.75,Carpet,222,2.25,499.50,110889.00,499.50,110889.00,6404.838750,111388.50
+7,Ian,OH,6.25,Carpet,111,2.25,249.75,233.10,249.75,233.10,30.178125,482.85

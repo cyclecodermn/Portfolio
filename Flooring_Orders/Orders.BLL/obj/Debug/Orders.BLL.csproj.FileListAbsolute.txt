@@ -1,0 +1,16 @@
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\Files\Products.txt
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\Files\Taxes.txt
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\Orders.BLL.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\Orders.BLL.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\nunit.framework.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\Orders.Data.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\Orders.Models.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\Orders.Data.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\Orders.Models.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\nunit.framework.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\bin\Debug\nunit.framework.xml
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\obj\Debug\Orders.BLL.csprojAssemblyReference.cache
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\obj\Debug\Orders.BLL.csproj.CoreCompileInputs.cache
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\obj\Debug\Orders.BLL.csproj.CopyComplete
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\obj\Debug\Orders.BLL.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.BLL\obj\Debug\Orders.BLL.pdb

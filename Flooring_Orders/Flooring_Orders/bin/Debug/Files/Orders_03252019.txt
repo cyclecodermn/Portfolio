@@ -1,0 +1,2 @@
+﻿OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+1,Steven,PA,6.75,Laminate,1000,1.75,1750.00,2100.00,1750.00,2100.00,259.875000,3850.00

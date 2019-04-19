@@ -1,0 +1,3 @@
+﻿OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+2,Aimee,MI,5.75,Tile,333,3.50,1165.50,388111.50,1165.50,388111.50,22383.427500,389277.00
+3,Sidney,PA,6.75,Laminate,111,1.75,194.25,233.10,194.25,233.10,28.846125,427.35

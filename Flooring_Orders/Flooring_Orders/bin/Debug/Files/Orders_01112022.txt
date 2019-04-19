@@ -1,0 +1,2 @@
+﻿OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+1,luke,PA,6.75,Laminate,1001,1.75,1751.75,2102.10,1751.75,2102.10,260.134875,3853.85

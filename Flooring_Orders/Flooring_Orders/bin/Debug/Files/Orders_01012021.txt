@@ -1,0 +1,4 @@
+﻿OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+2,Supriya,MI,6.75,Laminate,1000,1.75,1750.00,1750000.00,1750.00,1750000.00,118243.125000,1751750.00
+9,Margaret,PA,6.75,Laminate,100,1.75,175.00,17500.00,175.00,17500.00,1193.062500,17675.00
+10,Luke,PA,6.75,Laminate,111,1.75,194.25,21561.75,194.25,21561.75,1468.530000,21756.00

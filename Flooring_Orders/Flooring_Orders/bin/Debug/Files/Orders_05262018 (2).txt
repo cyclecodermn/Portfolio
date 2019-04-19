@@ -1,0 +1,6 @@
+﻿OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+1,Wise,OH,6.25,Wood,100,5.15,4.75,515,475,61.88,1051.88
+2,Aggie,OH,6.25,Wood,100,5.15,4.75,515,475,61.875,1051.875
+3,Elroy,PA,6.75,Laminate,100,1.75,2.1,175,210,25.9875,410.9875
+4,Mike,MI,5.75,Tile,101,3.5,4.15,353.5,419.15,44.427375,817.077375
+5,Nancy,IN,6,Wood,102,5.15,4.75,525.3,484.5,60.588,1070.388

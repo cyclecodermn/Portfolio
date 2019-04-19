@@ -1,0 +1,14 @@
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\bin\Debug\Files\Products.txt
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\bin\Debug\Files\Taxes.txt
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\bin\Debug\Orders.Data.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\bin\Debug\Orders.Data.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\bin\Debug\nunit.framework.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\bin\Debug\Orders.Models.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\bin\Debug\Orders.Models.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\bin\Debug\nunit.framework.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\bin\Debug\nunit.framework.xml
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\obj\Debug\Orders.Data.csprojAssemblyReference.cache
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\obj\Debug\Orders.Data.csproj.CoreCompileInputs.cache
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\obj\Debug\Orders.Data.csproj.CopyComplete
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\obj\Debug\Orders.Data.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\Flooring_Orders\Orders.Data\obj\Debug\Orders.Data.pdb
