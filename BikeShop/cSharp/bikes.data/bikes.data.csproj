@@ -43,7 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADO\BikeRepoADO.cs" />
-    <Compile Include="ADO\ColorRepoADO .cs" />
+    <Compile Include="ADO\ColorRepoADO.cs" />
     <Compile Include="ADO\SpecialRepoADO.cs" />
     <Compile Include="ADO\MakeRepoADO.cs" />
     <Compile Include="ADO\ModelRepoADO.cs" />

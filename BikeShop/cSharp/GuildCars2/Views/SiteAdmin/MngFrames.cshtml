@@ -1,0 +1,42 @@
+﻿@using bikes.models.VMs
+@model IEnumerable<bikes.models.VMs.FrameAddViewModel>
+
+@{
+    ViewBag.Title = "MngFrames";
+
+}
+
+<h2>MngFrames</h2>
+
+
+<div class="row">
+    @Html.Partial("_SideNavPartial")
+    <div class="col-xs-12">
+        <h3>Majors</h3>
+        @Html.ActionLink("Add Frame", "AddFrame", "SiteAdmin", null, new { @class = "btn btn-primary" })
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <table class="table table-striped" style="width: auto;">
+            <thead>
+                <tr>
+                    <th>Frames</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var frame in model)
+                        <tr>
+                            <td>@model.</ td >
+                            <td>
+                                @Html.ActionLink("Edit", "EditMajor", "Admin", new { id = major.MajorId }, null) |
+                                @Html.ActionLink("Delete", "DeleteMajor", "Admin", new { id = major.MajorId }, null)
+                            </td>
+                        </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -18,8 +18,6 @@ namespace bikes.data.ADO
     {
         public List<BikeFrameTable> GetAll()
         {
-
-
             List<BikeFrameTable> frames = new List<BikeFrameTable>();
 
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
