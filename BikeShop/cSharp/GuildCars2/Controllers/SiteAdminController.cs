@@ -14,15 +14,15 @@ using bikes.models.Tables;
 
 namespace GuildBikes.Controllers
 {
-    public class SiteAdmin: Controller
+    public class SiteAdminController: Controller
     {
         public ActionResult MngFrames()
         {
 
-            FrameAddViewModel model = new FrameAddViewModel();
-
+            FramesListViewModel model = new FramesListViewModel();
+            
             var FrameRepo = FrameRepoFactory.GetRepo();
-            model.BikeFrames = new SelectList(FrameRepo.GetAll(), "BikeFrameId", "BikeFrame");
+            model.BikeFrames = FrameRepo.GetAll();
             
             return View(model);
         }

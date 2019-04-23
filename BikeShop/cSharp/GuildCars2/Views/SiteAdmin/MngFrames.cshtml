@@ -1,42 +1,34 @@
-﻿@using bikes.models.VMs
-@model IEnumerable<bikes.models.VMs.FrameAddViewModel>
+﻿@model bikes.models.VMs.FramesListViewModel
 
 @{
-    ViewBag.Title = "MngFrames";
+    /**/
 
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>MngFrames</h2>
+<!DOCTYPE html>
 
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>MngFrames</title>
+</head>
+<body>
 
-<div class="row">
-    @Html.Partial("_SideNavPartial")
-    <div class="col-xs-12">
-        <h3>Majors</h3>
-        @Html.ActionLink("Add Frame", "AddFrame", "SiteAdmin", null, new { @class = "btn btn-primary" })
-    </div>
-</div>
-<div class="row">
-    <div class="col-xs-12">
-        <table class="table table-striped" style="width: auto;">
-            <thead>
-                <tr>
-                    <th>Frames</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    foreach (var frame in model)
-                        <tr>
-                            <td>@model.</ td >
-                            <td>
-                                @Html.ActionLink("Edit", "EditMajor", "Admin", new { id = major.MajorId }, null) |
-                                @Html.ActionLink("Delete", "DeleteMajor", "Admin", new { id = major.MajorId }, null)
-                            </td>
-                        </tr>
+    <div class="row">
+        @Html.Partial("_SideNavPartial")
+        <div class="col-xs-10">
+            <h3>Frames</h3>
+            @Html.ActionLink("Add Frame", "AddFrame", "SiteAdmin", null, new { @class = "btn btn-primary" })
+
+            <ul>
+                @foreach (var frame in Model.BikeFrames)
+                {
+                    <li>@frame.BikeFrame</li>
                 }
-            </tbody>
-        </table>
+            </ul>
+        </div>
     </div>
-</div>
+
+</body>
+</html>

@@ -11,15 +11,11 @@ using bikes.models.Tables;
 
 namespace bikes.models.VMs
 {
-    public class FrameAddViewModel: IValidatableObject
+    public class FramesListViewModel: IValidatableObject
     {
         // The IEnumerables below are populated from the database
         // All of them can be edited by the user or will be in future versions
-        public IEnumerable<SelectListItem> BikeFrames { get; set; }
-        public IEnumerable<SelectListItem> BikeColors { get; set; }
-
-        public BikeFrameTable BikeFrame { get; set; }
-
+        public IEnumerable<BikeFrameTable> BikeFrames { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
