@@ -17,16 +17,47 @@
 
     <div class="row">
         @Html.Partial("_SideNavPartial")
-        <div class="col-xs-10">
-            <h3>Frames</h3>
+        <div class="col-xs-9">
+
+
+            <table class="table table-striped" style="width: 40%;">
+                <thead>
+                    <tr>
+                        <th>Frame</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var frame in Model.BikeFrames)
+
+                    {
+                        <tr>
+                            <td>@frame.BikeFrame</td>
+                            <td align="right">
+                                @Html.ActionLink("Edit", "EditCourse", "Admin", new { id = frame.BikeFrameId }, null) |
+                                @Html.ActionLink("Delete", "DeleteCourse", "Admin", new { id = frame.BikeFrameId }, null)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+
+
+
+            <br />
             @Html.ActionLink("Add Frame", "AddFrame", "SiteAdmin", null, new { @class = "btn btn-primary" })
 
-            <ul>
-                @foreach (var frame in Model.BikeFrames)
-                {
-                    <li>@frame.BikeFrame</li>
-                }
-            </ul>
+
+
+
+
+
+
+
+
+
         </div>
     </div>
 
