@@ -17,5 +17,11 @@ namespace GuildBikes.Utilities
             var user = userMgr.FindByName(controller.User.Identity.Name);
             return user.Id;
         }
+        public static string GetUserName(Controller controller)
+        {
+            var userMgr = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            var user = userMgr.FindByName(controller.User.Identity.Name);
+            return user.firstName + " " + user.lastName;
+        }
     }
 }

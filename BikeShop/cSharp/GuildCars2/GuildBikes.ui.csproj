@@ -277,8 +277,9 @@
     <Content Include="Views\Bikes\Edit.cshtml" />
     <Content Include="Views\SiteAdmin\_SideNavPartial.cshtml" />
     <Content Include="Views\SiteAdmin\Frames.cshtml" />
-    <Content Include="Views\SiteAdmin\MngFrames-1st.cshtml" />
     <Content Include="Views\SiteAdmin\MngFrames.cshtml" />
+    <Content Include="Views\SiteAdmin\Index-1st.cshtml" />
+    <Content Include="Views\SiteAdmin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
