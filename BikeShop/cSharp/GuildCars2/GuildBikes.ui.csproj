@@ -276,10 +276,10 @@
     <Content Include="Views\Bikes\Add.cshtml" />
     <Content Include="Views\Bikes\Edit.cshtml" />
     <Content Include="Views\SiteAdmin\_SideNavPartial.cshtml" />
-    <Content Include="Views\SiteAdmin\Frames.cshtml" />
     <Content Include="Views\SiteAdmin\MngFrames.cshtml" />
     <Content Include="Views\SiteAdmin\Index-1st.cshtml" />
     <Content Include="Views\SiteAdmin\Index.cshtml" />
+    <Content Include="Views\SiteAdmin\EditFrame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -40,6 +40,34 @@ namespace GuildBikes.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        public ActionResult EditFrame(BikeFrameTable frame)
+        {
+
+            if (string.IsNullOrEmpty(frame.BikeFrame))
+            {
+                ModelState.AddModelError("MajorId",
+                    "Please enter the name of the frame.");
+            }
+            if (ModelState.IsValid)
+            {
+                FrameRepoADO.Edit(frame);
+                //MajorRepository.Edit(major);
+                return RedirectToAction("Majors");
+            }
+            else
+            {
+                return View(frame);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult EditFrame(int id)
+        {
+            var frame = FrameRepoADO.Get(id);
+            return View(frame);
+        }
+
 
     }
 }

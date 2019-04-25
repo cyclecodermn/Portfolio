@@ -16,6 +16,8 @@ namespace bikes.data.ADO
     public class FrameRepoADO : IFrameRepo
 
     {
+        private static List<BikeFrameTable> _frames;
+
         public List<BikeFrameTable> GetAll()
         {
             List<BikeFrameTable> frames = new List<BikeFrameTable>();
@@ -40,6 +42,23 @@ namespace bikes.data.ADO
                 }
             }
             return frames;
+        }
+
+        public static void Edit(BikeFrameTable frame)
+        {
+            var selectedFrame = _frames.First(f => f.BikeFrameId == frame.BikeFrameId);
+
+            selectedFrame.BikeFrame = frame.BikeFrame;
+        }
+
+        public static void Delete(int frameId)
+        {
+            _frames.RemoveAll(f => f.BikeFrameId == frameId);
+        }
+
+        public static BikeFrameTable Get(int frameId)
+        {
+            return _frames.FirstOrDefault(f => f.BikeFrameId == frameId);
         }
     }
 }
