@@ -27,19 +27,19 @@ C#
 
 Plan for completing remaining items:
 
-By Apr 26
+By Apr 10
 Finish web pages that allow staff to change the database with simple wepages. These pages will allow staff to change tables in the database for bike colors, frame types, makes, and models.
 
-By May 3,
+By May 17,
 Finish a ‘control panel’ for staff that allows them to access the web pages described above, which change database tables about bike characteristics.
 
-By May 10
+By May 23
 Add an admin role for some staff. It will allow admin users to add staff to the website.
 
-By May 17
+By May 30
 Finish all verification to assure users type in correct data and test the website to find bugs.
 
-By May 23
+By June 6
 Fix all bugs and other small problems.
 
 

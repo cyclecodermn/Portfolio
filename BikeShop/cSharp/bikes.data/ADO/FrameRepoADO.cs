@@ -16,8 +16,6 @@ namespace bikes.data.ADO
     public class FrameRepoADO : IFrameRepo
 
     {
-        private static List<BikeFrameTable> _frames;
-
         public List<BikeFrameTable> GetAll()
         {
             List<BikeFrameTable> frames = new List<BikeFrameTable>();
