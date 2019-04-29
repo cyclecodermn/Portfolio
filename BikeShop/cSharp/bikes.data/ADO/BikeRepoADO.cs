@@ -215,7 +215,7 @@ namespace bikes.data.ADO
 
                         bike.BikeMake = dr["BikeMake"].ToString();
                         bike.BikeModel = dr["BikeModel"].ToString();
-                        bike.BikeFrame = dr["BikeFrame"].ToString();
+                        bike.BikeFrame = dr["BikeFrameName"].ToString();
                         bike.FrameColor = dr["FrameColor"].ToString();
                         bike.TrimColor = dr["TrimColor"].ToString();
 
@@ -254,7 +254,7 @@ namespace bikes.data.ADO
                         currentRow.BikeModel = (string)dr["BikeModel"];
                         currentRow.FrameColor = (string)dr["FrameColor"];
                         currentRow.TrimColor = (string)dr["TrimColor"];
-                        currentRow.BikeFrame = (string)dr["BikeFrame"];
+                        currentRow.BikeFrame = (string)dr["BikeFrameName"];
                         currentRow.BikeMsrp = (decimal)dr["BikeMsrp"];
                         currentRow.BikeListPrice = (decimal)dr["BikeListPrice"];
                         currentRow.BikeYear = (int)dr["BikeYear"];
@@ -343,7 +343,7 @@ namespace bikes.data.ADO
 
                     if (isFrame)
                     {
-                        query += "AND BikeFrame LIKE @MakeModelOrYr ";
+                        query += "AND BikeFrameName LIKE @MakeModelOrYr ";
                         cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr);
                     }
 
@@ -389,7 +389,7 @@ namespace bikes.data.ADO
                         row.BikeYear = (int)dr["BikeYear"];
                         row.BikeMake = (string)dr["BikeMake"];
                         row.BikeModel = (string)dr["BikeModel"];
-                        row.BikeFrame = (string)dr["BikeFrame"];
+                        row.BikeFrame = (string)dr["BikeFrameName"];
                         row.BikeNumGears = (int)dr["BikeNumGears"];
                         row.BikeCondition = (int)dr["BikeCondition"];
                         row.BikeSerialNum = (string)dr["BikeSerialNum"];
@@ -415,7 +415,7 @@ namespace bikes.data.ADO
         private string GetAllBikeSQL()
         {
             string query = "SELECT TOP 12 BikeId, BikeMake, BikeModel, c.BikeColor AS frameColor, ";
-            query += " ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice, ";
+            query += " ct.BikeColor AS trimColor, BikeFrameName,BikeMsrp,BikeListPrice, ";
             query += " BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName";
 
             query += " FROM BikeTable bt ";

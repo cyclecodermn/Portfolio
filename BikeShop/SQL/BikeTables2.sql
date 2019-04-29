@@ -53,7 +53,7 @@ GO
 
 CREATE TABLE BikeFrameTable ( 
 	BikeFrameId		int primary key identity(1,1) not null,
-	BikeFrame		varchar(64) NOT NULL,
+	BikeFrameName	varchar(64) NOT NULL,
  ) 
 GO
 

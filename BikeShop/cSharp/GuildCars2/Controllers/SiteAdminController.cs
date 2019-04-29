@@ -64,7 +64,7 @@ namespace GuildBikes.Controllers
         [HttpGet]
         public ActionResult EditFrame(int id)
         {
-            var frame = FrameRepoADO.Get(id);
+            var frame = FrameRepoADO.GetById(id);
             return View(frame);
         }
 

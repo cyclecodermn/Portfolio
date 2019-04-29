@@ -26,14 +26,14 @@ namespace bikes.data.ADO
                 SqlCommand cmd = new SqlCommand("FramesSelectAll", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
                 cn.Open();
-	
+
                 using (SqlDataReader dr = cmd.ExecuteReader())
                 {
-                    while(dr.Read())
+                    while (dr.Read())
                     {
                         BikeFrameTable currentRow = new BikeFrameTable();
                         currentRow.BikeFrameId = (int)dr["BikeFrameId"];
-                        currentRow.BikeFrame = dr["BikeFrame"].ToString();
+                        currentRow.BikeFrame = dr["BikeFrameName"].ToString();
 
                         frames.Add(currentRow);
                     }
@@ -42,21 +42,64 @@ namespace bikes.data.ADO
             return frames;
         }
 
-        public static void Edit(BikeFrameTable frame)
+        public static void Edit(BikeFrameTable Frame)
         {
-            var selectedFrame = _frames.First(f => f.BikeFrameId == frame.BikeFrameId);
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("FrameUpdate", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
 
-            selectedFrame.BikeFrame = frame.BikeFrame;
+                cmd.Parameters.AddWithValue("@FrameId", Frame.BikeFrameId);
+                cmd.Parameters.AddWithValue("@BikeFrameName", Frame.BikeFrame);
+                //cmd.Parameters.AddWithValue("@UserId", Frame.UserId);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
         }
 
         public static void Delete(int frameId)
         {
-            _frames.RemoveAll(f => f.BikeFrameId == frameId);
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("FrameDelete", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@FrameId", frameId);
+
+                cn.Open();
+
+                cmd.ExecuteNonQuery();
+            }
         }
 
-        public static BikeFrameTable Get(int frameId)
+        public static BikeFrameTable GetById(int frameId)
         {
-            return _frames.FirstOrDefault(f => f.BikeFrameId == frameId);
+            BikeFrameTable Frame = null;
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("FrameSelect", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@FrameId", frameId);
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        Frame = new BikeFrameTable();
+                        Frame.BikeFrameId = (int)dr["ListingId"];
+                        Frame.BikeFrame = (string)dr["BikeFrameName"];
+                        // Frame.UserId = dr["UserId"].ToString();
+
+                    }
+                }
+            }
+
+            return Frame;
         }
     }
 }
