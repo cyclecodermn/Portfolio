@@ -10,9 +10,10 @@ IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 		DROP PROCEDURE BikesRecentlyAdded
 GO
 
+-- During a stable state of this project, try removing the procedure below.
 CREATE PROCEDURE BikesRecentlyAdded AS
 BEGIN
-	SELECT TOP 5 BikeFrameId, BikeFrame 
+	SELECT TOP 5 BikeFrameId, BikeFrameName
 	FROM BikeFrameTable
 END
 GO
@@ -31,7 +32,7 @@ CREATE PROCEDURE OneBikeDetails (
 BEGIN
 
 SELECT	BikeMake,BikeModel, c.BikeColor AS frameColor,  
-		ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice,
+		ct.BikeColor AS trimColor, BikeFrameName,BikeMsrp,BikeListPrice,
 		BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
 	FROM BikeTable bt
 		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
@@ -59,7 +60,7 @@ AS
 BEGIN
 
 SELECT	BikeId,BikeMake,BikeModel, c.BikeColor AS frameColor,  
-		ct.BikeColor AS trimColor, BikeFrame,BikeMsrp,BikeListPrice,
+		ct.BikeColor AS trimColor, BikeFrameName,BikeMsrp,BikeListPrice,
 		BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
 	FROM BikeTable bt
 		INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
@@ -85,6 +86,7 @@ BEGIN
 	FROM SpecialTable
 END
 GO
+
 -- -  -   -    -     -      -       -        -
 
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
@@ -94,11 +96,65 @@ GO
 
 CREATE PROCEDURE FramesSelectAll AS
 BEGIN
-	SELECT BikeFrameId, BikeFrame 
+	SELECT BikeFrameId, BikeFrameName
 	FROM BikeFrameTable
 END
 GO
--- -  -   -    -     -      -       -        --- -  -   -    -     -      -       -        -
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'FrameSelect')
+		DROP PROCEDURE FrameSelect
+GO
+
+CREATE PROCEDURE FrameSelect (
+	@BikeFrameId int
+
+) AS
+BEGIN
+	SELECT BikeFrameId, BikeFrameName
+	FROM BikeFrameTable
+	WHERE BikeFrameId = @BikeFrameId
+
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'FrameDelete')
+      DROP PROCEDURE FrameDelete
+GO
+
+CREATE PROCEDURE FrameDelete (
+	@BikeFrameId int
+
+) AS
+BEGIN
+	DELETE FROM FrameTable
+	WHERE BikeFrameId = @BikeFrameId
+END
+GO
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'FrameUpdate')
+		DROP PROCEDURE FrameUpdate
+GO
+
+CREATE PROCEDURE FrameUpdate (
+	@BikeFrameId			int,
+	@BikeFrameName		char(64)
+) AS
+BEGIN
+	UPDATE BikeFrameTable SET
+		BikeFrameName	= @BikeFrameName
+	WHERE BikeFrameId	= @BikeFrameId;
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 	WHERE ROUTINE_NAME = 'ColorsSelectAll')
 		DROP PROCEDURE ColorsSelectAll
@@ -154,7 +210,7 @@ BEGIN
 delete from BikeFrameTable;
 	SET IDENTITY_INSERT BikeFrameTable ON;
 	
-	INSERT INTO BikeFrameTable (BikeFrameId, BikeFrame)
+	INSERT INTO BikeFrameTable (BikeFrameId, BikeFrameName)
 	VALUES
 	(1,'Touring'),
 	(2,'Road'),

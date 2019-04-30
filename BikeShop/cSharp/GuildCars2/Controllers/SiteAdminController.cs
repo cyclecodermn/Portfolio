@@ -53,7 +53,7 @@ namespace GuildBikes.Controllers
             {
                 FrameRepoADO.Edit(frame);
                 //MajorRepository.Edit(major);
-                return RedirectToAction("Majors");
+                return RedirectToAction("MngFrames");
             }
             else
             {

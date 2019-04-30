@@ -49,7 +49,7 @@ namespace bikes.data.ADO
                 SqlCommand cmd = new SqlCommand("FrameUpdate", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@FrameId", Frame.BikeFrameId);
+                cmd.Parameters.AddWithValue("@BikeFrameId", Frame.BikeFrameId);
                 cmd.Parameters.AddWithValue("@BikeFrameName", Frame.BikeFrame);
                 //cmd.Parameters.AddWithValue("@UserId", Frame.UserId);
 
@@ -82,7 +82,7 @@ namespace bikes.data.ADO
                 SqlCommand cmd = new SqlCommand("FrameSelect", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@FrameId", frameId);
+                cmd.Parameters.AddWithValue("@BikeFrameId", frameId);
 
                 cn.Open();
 
@@ -91,7 +91,7 @@ namespace bikes.data.ADO
                     if (dr.Read())
                     {
                         Frame = new BikeFrameTable();
-                        Frame.BikeFrameId = (int)dr["ListingId"];
+                        Frame.BikeFrameId = (int)dr["BikeFrameId"];
                         Frame.BikeFrame = (string)dr["BikeFrameName"];
                         // Frame.UserId = dr["UserId"].ToString();
 
