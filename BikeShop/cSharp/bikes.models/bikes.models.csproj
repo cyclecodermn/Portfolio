@@ -91,6 +91,7 @@
     <Compile Include="Tables\BikeModelTable.cs" />
     <Compile Include="Tables\PurchaseTable.cs" />
     <Compile Include="Tables\SpecialTable.cs" />
+    <Compile Include="VMs\FrameDeleteViewModel.cs" />
     <Compile Include="VMs\FramesListViewModel.cs" />
     <Compile Include="VMs\BikeEditViewModel.cs" />
     <Compile Include="VMs\BikeAddViewModel.cs" />

@@ -131,7 +131,7 @@ CREATE PROCEDURE FrameDelete (
 
 ) AS
 BEGIN
-	DELETE FROM FrameTable
+	DELETE FROM BikeFrameTable
 	WHERE BikeFrameId = @BikeFrameId
 END
 GO

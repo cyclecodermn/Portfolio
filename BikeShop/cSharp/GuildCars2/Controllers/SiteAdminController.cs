@@ -17,7 +17,7 @@ using Microsoft.Ajax.Utilities;
 
 namespace GuildBikes.Controllers
 {
-    public class SiteAdminController: Controller
+    public class SiteAdminController : Controller
     {
         public ActionResult Index()
         {
@@ -33,10 +33,10 @@ namespace GuildBikes.Controllers
         {
 
             FramesListViewModel model = new FramesListViewModel();
-            
+
             var FrameRepo = FrameRepoFactory.GetRepo();
             model.BikeFrames = FrameRepo.GetAll();
-            
+
             return View(model);
         }
 
@@ -71,15 +71,27 @@ namespace GuildBikes.Controllers
         [HttpGet]
         public ActionResult DeleteFrame(int id)
         {
-            var Frame = FrameRepoADO.GetById(id);
-            return View(Frame);
+            FrameDeleteViewModel FrameToDelete = new FrameDeleteViewModel();
+
+            FrameToDelete.Frame = FrameRepoADO.GetById(FrameToDelete.Frame.BikeFrameId);
+            //BikeFrameTable Frame = FrameRepoADO.GetById(id);
+            return View(FrameToDelete);
         }
 
         [HttpPost]
-        public ActionResult DeleteFrame(BikeFrameTable Frame)
+        public ActionResult DeleteFrame(FrameDeleteViewModel FrameToDelete)
         {
-            FrameRepoADO.Delete(Frame.BikeFrameId);
-            return RedirectToAction("Frames");
+
+            IEnumerable<InvDetailedItem> BikesWithFrames = FrameRepoADO.Delete(FrameToDelete.Frame);
+
+            if (BikesWithFrames.Count() == 0)
+            {
+                return RedirectToAction("Frames");
+            }
+            else
+            {
+                return View(FrameToDelete);
+            }
         }
     }
 }

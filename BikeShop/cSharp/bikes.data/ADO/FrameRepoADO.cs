@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bikes.models.Queries;
 using bikes.models.Tables;
 
 namespace bikes.data.ADO
@@ -58,19 +59,54 @@ namespace bikes.data.ADO
             }
         }
 
-        public static void Delete(int frameId)
+        public static IEnumerable<InvDetailedItem> Delete(BikeFrameTable FrameToDelete)
         {
-            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            List<BikeFrameTable> allFrames = new List<BikeFrameTable>();
+            FrameRepoADO FrameRepo = new FrameRepoADO();
+
+            allFrames = FrameRepo.GetAll();
+
+            //BikeFrameTable FrameToDelete = new BikeFrameTable();
+            FrameToDelete = allFrames.FirstOrDefault(f => f.BikeFrameId == FrameToDelete.BikeFrameId);
+
+            //Note: Change the reference to FrameRepoADO to the factory when I get this working
+
+            List<InvDetailedItem> allBikes = new List<InvDetailedItem>();
+            BikeRepoADO BikeRepo = new BikeRepoADO();
+            allBikes = BikeRepo.GetAll();
+
+            List<InvDetailedItem> FramesFound = new List<InvDetailedItem>();
+
+            string oneFrame = "";
+            foreach (InvDetailedItem Bike in allBikes)
             {
-                SqlCommand cmd = new SqlCommand("FrameDelete", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                Bike.BikeFrame = Bike.BikeFrame.TrimEnd();
+                oneFrame = Bike.BikeFrame;
+                if (oneFrame == FrameToDelete.BikeFrame)
+                    FramesFound.Add(Bike);
 
-                cmd.Parameters.AddWithValue("@BikeFrameId", frameId);
-
-                cn.Open();
-
-                cmd.ExecuteNonQuery();
             }
+
+
+            //FramesFound = allBikes.Where(b => b.BikeFrame == FrameToDelete.BikeFrame);
+
+            if (FramesFound.Count() == 0)
+            //The frame is not used by any bikes, so it can be deleted.
+            {
+                using (var cn = new SqlConnection(Settings.GetConnectionString()))
+                {
+                    SqlCommand cmd = new SqlCommand("FrameDelete", cn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@BikeFrameId", FrameToDelete.BikeFrameId);
+
+                    cn.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            return FramesFound;
         }
 
         public static BikeFrameTable GetById(int frameId)
