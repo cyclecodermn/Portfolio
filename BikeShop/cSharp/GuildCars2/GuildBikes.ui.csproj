@@ -280,6 +280,7 @@
     <Content Include="Views\SiteAdmin\Index-1st.cshtml" />
     <Content Include="Views\SiteAdmin\Index.cshtml" />
     <Content Include="Views\SiteAdmin\EditFrame.cshtml" />
+    <Content Include="Views\SiteAdmin\DeleteFrame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -65,7 +65,7 @@ namespace bikes.data.ADO
                 SqlCommand cmd = new SqlCommand("FrameDelete", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-                cmd.Parameters.AddWithValue("@FrameId", frameId);
+                cmd.Parameters.AddWithValue("@BikeFrameId", frameId);
 
                 cn.Open();
 

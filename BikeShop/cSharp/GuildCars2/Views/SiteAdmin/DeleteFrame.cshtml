@@ -1,0 +1,22 @@
+﻿@model bikes.models.Tables.BikeFrameTable
+
+@{
+    ViewBag.Title = "DeleteFrame";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("_SideNavPartial")
+    <div class="col-xs-9">
+        <h3>Delete Frame</h3>
+        @Html.ActionLink("Return to List", "Majors", "SiteAdmin")
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.BikeFrameId)
+            <p>Are you sure that you wish to delete the frame <b>@Html.DisplayFor(m => m.BikeFrame)</b>?</p>
+            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+            @Html.ActionLink("Cancel", "MngFrames", "SiteAdmin", null, new { @class = "btn btn-sm btn-info" })
+        }
+    </div>
+</div>   

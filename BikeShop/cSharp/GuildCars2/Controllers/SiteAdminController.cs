@@ -68,6 +68,18 @@ namespace GuildBikes.Controllers
             return View(frame);
         }
 
+        [HttpGet]
+        public ActionResult DeleteFrame(int id)
+        {
+            var Frame = FrameRepoADO.GetById(id);
+            return View(Frame);
+        }
 
+        [HttpPost]
+        public ActionResult DeleteFrame(BikeFrameTable Frame)
+        {
+            FrameRepoADO.Delete(Frame.BikeFrameId);
+            return RedirectToAction("Frames");
+        }
     }
 }

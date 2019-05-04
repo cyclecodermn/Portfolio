@@ -5,24 +5,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>EditFrame</h2>
-
-
 <div class="row">
     <div class="col-xs-12">
         <h3>Edit Frame</h3>
-        @Html.ActionLink("Return to List", "Frames", "SiteAdmin")
+        @Html.ActionLink("Return to List", "MngFrames", "SiteAdmin")
     </div>
 </div>
 <div class="row">
-    <div class="col-xs-12">
+    @Html.Partial("_SideNavPartial")
+    <div class="col-xs-9">
         @Html.ValidationSummary()
 
         @using (Html.BeginForm())
         {
             @Html.HiddenFor(m => m.BikeFrameId)
             <div class="form-group">
-                <label>Major</label>
+                <label>Frame</label>
                 @Html.TextBoxFor(m => m.BikeFrame, new { @class = "form-control", placeholder = "Frame" })
             </div>
 
