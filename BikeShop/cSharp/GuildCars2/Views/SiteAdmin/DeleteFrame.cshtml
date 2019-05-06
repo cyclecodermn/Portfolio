@@ -13,15 +13,22 @@
         <h3>Delete Frame</h3>
         @Html.ActionLink("Return to List", "MngFrames", "SiteAdmin")
 
-        @using (Html.BeginForm())
-        {
-            @Html.HiddenFor(m => m.Frame.BikeFrameId)
-            <p>Are you sure that you wish to delete the frame <b>@Html.DisplayFor(m => m.Frame.BikeFrame)</b>?</p>
-            <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-            @Html.ActionLink("Cancel", "MngFrames", "SiteAdmin", null, new { @class = "btn btn-sm btn-info" })
+        @{
+            if (Model.message.IsEmpty())
+            {
+                using (Html.BeginForm())
+                {
+                    @Html.HiddenFor(m => m.Frame.BikeFrameId)
+                    <p>Are you sure that you wish to delete the frame <b>@Html.DisplayFor(m => m.Frame.BikeFrame)</b>?</p>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    @Html.ActionLink("Cancel", "MngFrames", "SiteAdmin", null, new { @class = "btn btn-sm btn-info" })
+                }
+            }
+            else
+            {
+                @Model.message
+            }
         }
-        
-        Bike frame is used by @Model.BikeFramesUsed.Count() bikes.
 
     </div>
 </div>   

@@ -16,7 +16,7 @@
     <div class="col-xs-9">
         @Html.ValidationSummary()
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm()
         {
             @Html.HiddenFor(m => m.BikeFrameId)
             <div class="form-group">

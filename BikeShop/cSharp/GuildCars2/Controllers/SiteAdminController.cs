@@ -62,36 +62,44 @@ namespace GuildBikes.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditFrame(int id)
+        public ActionResult EditFrame(int frameId)
         {
-            var frame = FrameRepoADO.GetById(id);
+            var frame = FrameRepoADO.GetById(frameId);
             return View(frame);
         }
 
         [HttpGet]
-        public ActionResult DeleteFrame(int id)
+        public ActionResult DeleteFrame(int frameId)
         {
             FrameDeleteViewModel FrameToDelete = new FrameDeleteViewModel();
+            FrameToDelete.Frame = FrameRepoADO.GetById(frameId);
+            FrameToDelete.BikesWithFrame = FrameRepoADO.Delete(FrameToDelete.Frame);
 
-            FrameToDelete.Frame = FrameRepoADO.GetById(FrameToDelete.Frame.BikeFrameId);
+            if (FrameToDelete.BikesWithFrame.Count() > 0)
+            {
+                FrameToDelete.message = "The frame " + FrameToDelete.Frame.BikeFrame + " is used by " +
+                                        FrameToDelete.BikesWithFrame.Count() + " bike(s), so it cannot be deleted.";
+            }
+
             //BikeFrameTable Frame = FrameRepoADO.GetById(id);
             return View(FrameToDelete);
         }
 
         [HttpPost]
-        public ActionResult DeleteFrame(FrameDeleteViewModel FrameToDelete)
+        public ActionResult DeleteFrame(BikeFrameTable FrameToDelete)
         {
+            // *** Note: this method must receive a frame object since it's an overload
+            //and the other recieves an int.
 
-            IEnumerable<InvDetailedItem> BikesWithFrames = FrameRepoADO.Delete(FrameToDelete.Frame);
+            //Current plan is for this section to just delete the frame. The Get method
+            //above will confirm the frame is not used by any bikes.
 
-            if (BikesWithFrames.Count() == 0)
-            {
-                return RedirectToAction("Frames");
-            }
-            else
-            {
-                return View(FrameToDelete);
-            }
+            //IEnumerable<InvDetailedItem> BikesWithFrames = FrameRepoADO.Delete(FrameToDelete.Frame);
+            // FrameDeleteViewModel FrameToDelete = new FrameDeleteViewModel();
+            FrameRepoADO.Delete(FrameToDelete);
+
+            return RedirectToAction("Frames");
+
         }
     }
 }
