@@ -11,7 +11,6 @@
     @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
     <div class="col-xs-9">
         <h3>Delete Frame</h3>
-        @Html.ActionLink("Return to List", "MngFrames", "SiteAdmin")
 
         @{
             if (Model.message.IsEmpty())
@@ -21,12 +20,14 @@
                     @Html.HiddenFor(m => m.Frame.BikeFrameId)
                     <p>Are you sure that you wish to delete the frame <b>@Html.DisplayFor(m => m.Frame.BikeFrame)</b>?</p>
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
-                    @Html.ActionLink("Cancel", "MngFrames", "SiteAdmin", null, new { @class = "btn btn-sm btn-info" })
+                    @Html.ActionLink("Cancel", "MngFrames", "Frame", null, new { @class = "btn btn-sm btn-info" })
                 }
             }
             else
             {
-                @Model.message
+                @Model.message<p></p>
+                @Html.ActionLink("Return to List", "MngFrames", "Frame", null, new { @class = "btn btn-sm btn-info" })
+
             }
         }
 

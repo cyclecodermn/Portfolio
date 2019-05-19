@@ -29,16 +29,16 @@ namespace GuildBikes.Controllers
 
         }
 
-        public ActionResult MngFrames()
-        {
+        //public ActionResult MngFrames()
+        //{
 
-            FramesListViewModel model = new FramesListViewModel();
+        //    FramesListViewModel model = new FramesListViewModel();
 
-            var FrameRepo = FrameRepoFactory.GetRepo();
-            model.BikeFrames = FrameRepo.GetAll();
+        //    var FrameRepo = FrameRepoFactory.GetRepo();
+        //    model.BikeFrames = FrameRepo.GetAll();
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
         //[HttpPost]
         //public ActionResult EditFrame(BikeFrameTable frame)

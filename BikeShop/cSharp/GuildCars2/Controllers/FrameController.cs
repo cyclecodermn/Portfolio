@@ -19,15 +19,15 @@ namespace GuildBikes.Controllers
 {
     public class FrameController : Controller
     {
-        public ActionResult Index()
-        {
-            string model = AuthorizeUtilities.GetUserName(this);
-            if (model.IsNullOrWhiteSpace())
-                model = "No Name";
+        //public ActionResult Index()
+        //{
+        //    string model = AuthorizeUtilities.GetUserName(this);
+        //    if (model.IsNullOrWhiteSpace())
+        //        model = "No Name";
 
-            return View();
+        //    return View();
 
-        }
+        //}
 
         public ActionResult MngFrames()
         {
@@ -41,12 +41,41 @@ namespace GuildBikes.Controllers
         }
 
         [HttpPost]
+        public ActionResult AddFrame(BikeFrameTable frame)
+        {
+
+            if (string.IsNullOrEmpty(frame.BikeFrame))
+            {
+                ModelState.AddModelError("FrameId",
+                    "Please enter the name of the frame.");
+            }
+            if (ModelState.IsValid)
+            {
+                FrameRepoADO.Insert(frame);
+                //MajorRepository.Edit(major);
+                return RedirectToAction("MngFrames");
+            }
+            else
+            {
+                return View(frame);
+            }
+        }
+
+        [HttpGet]
+        public ActionResult AddFrame()
+        {
+            BikeFrameTable frame = new BikeFrameTable();
+            //var frame = FrameRepoADO.GetById(frameId);
+            return View(frame);
+        }
+
+        [HttpPost]
         public ActionResult EditFrame(BikeFrameTable frame)
         {
 
             if (string.IsNullOrEmpty(frame.BikeFrame))
             {
-                ModelState.AddModelError("MajorId",
+                ModelState.AddModelError("FrameId",
                     "Please enter the name of the frame.");
             }
             if (ModelState.IsValid)

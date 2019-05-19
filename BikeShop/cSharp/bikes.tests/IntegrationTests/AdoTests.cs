@@ -395,6 +395,21 @@ namespace bikes.tests.IntegrationTests
         //    Assert.AreEqual(5, FeaturedBike.Count());
 
         //    Assert.AreEqual(1, FeaturedBike[0        [Test]
+
+        [Test]
+        public void CanAddFrame()
+        {
+            BikeFrameTable FrameToAdd = new BikeFrameTable();
+            var repo = new FrameRepoADO();
+
+            //ModelToAdd.BikeModelId = 4;
+            FrameToAdd.BikeFrame = "Test Frame";
+
+            repo.Insert(FrameToAdd);
+            Assert.AreEqual(4, FrameToAdd.BikeModelId);
+
+        }
+
         [Test]
         public void CanAddModel()
         {

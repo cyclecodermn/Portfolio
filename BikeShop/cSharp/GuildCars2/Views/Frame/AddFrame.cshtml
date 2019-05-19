@@ -1,14 +1,14 @@
 ﻿@model bikes.models.Tables.BikeFrameTable
 
 @{
-    ViewBag.Title = "Edit Frame";
+    ViewBag.Title = "Add Frame";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
     @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
     <div class="col-xs-9">
-        <h3>Edit Frame</h3>
+        <h3>Add Frame</h3>
 
         @Html.ValidationSummary()
 
@@ -17,7 +17,7 @@
             @Html.HiddenFor(m => m.BikeFrameId)
             <div class="form-group">
 
-                @Html.TextBoxFor(m => m.BikeFrame, new { @class = "form-control", placeholder = "Frame" })
+                @Html.TextBoxFor(m => m.BikeFrame, new { @class = "form-control", placeholder = "New Frame Name" })
             </div>
 
             <span class="text-danger">@Html.ValidationMessageFor(m => m.BikeFrameId)</span>

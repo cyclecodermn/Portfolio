@@ -282,8 +282,8 @@
     <Content Include="Views\SiteAdmin\Index.cshtml" />
     <Content Include="Views\Frame\EditFrame.cshtml" />
     <Content Include="Views\Frame\DeleteFrame.cshtml" />
-    <Content Include="Views\SiteAdmin\MngMake.cshtml" />
     <Content Include="Views\Frame\MngFrames.cshtml" />
+    <Content Include="Views\Frame\AddFrame.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
