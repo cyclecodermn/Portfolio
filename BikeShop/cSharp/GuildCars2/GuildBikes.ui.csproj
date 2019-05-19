@@ -191,6 +191,7 @@
     <Compile Include="Controllers\BikesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\FrameController.cs" />
     <Compile Include="Controllers\SiteAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -275,12 +276,14 @@
     <Content Include="Views\Home\Specials.cshtml" />
     <Content Include="Views\Bikes\Add.cshtml" />
     <Content Include="Views\Bikes\Edit.cshtml" />
-    <Content Include="Views\SiteAdmin\_SideNavPartial.cshtml" />
+    <Content Include="Views\Shared\_SideNavPartial.cshtml" />
     <Content Include="Views\SiteAdmin\MngFrames.cshtml" />
     <Content Include="Views\SiteAdmin\Index-1st.cshtml" />
     <Content Include="Views\SiteAdmin\Index.cshtml" />
-    <Content Include="Views\SiteAdmin\EditFrame.cshtml" />
-    <Content Include="Views\SiteAdmin\DeleteFrame.cshtml" />
+    <Content Include="Views\Frame\EditFrame.cshtml" />
+    <Content Include="Views\Frame\DeleteFrame.cshtml" />
+    <Content Include="Views\SiteAdmin\MngMake.cshtml" />
+    <Content Include="Views\Frame\MngFrames.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

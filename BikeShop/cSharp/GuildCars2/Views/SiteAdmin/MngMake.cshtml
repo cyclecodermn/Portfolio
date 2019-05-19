@@ -1,4 +1,4 @@
-﻿@model bikes.models.VMs.FramesListViewModel
+﻿@model bikes.models.VMs.MakeListViewModel
 
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,31 +9,31 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Manage Frames</title>
+    <title>Manage Bicycle Make</title>
 </head>
 <body>
 
     <div class="row">
-        @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
+        @Html.Partial("~/Views/Shared/_SideNavPartial")
         <div class="col-xs-9">
 
 
             <table class="table table-striped" style="width: 40%;">
                 <thead>
                     <tr>
-                        <th>Frame</th>
+                        <th>Make</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var frame in Model.BikeFrames)
+                    @foreach (var make in Model.BikeMakes)
 
                     {
                         <tr>
-                            <td>@frame.BikeFrame</td>
+                            <td>@make.BikeFrame</td>
                             <td align="right">
-                                @Html.ActionLink("Edit", "EditFrame", "Frame", new { frameId = frame.BikeFrameId }, null) |
-                                @Html.ActionLink("Delete", "DeleteFrame", "Frame", new { frameId = frame.BikeFrameId }, null)
+                                @Html.ActionLink("Edit", "EditFrame", "SiteAdmin", new { frameId = frame.BikeFrameId }, null) |
+                                @Html.ActionLink("Delete", "DeleteFrame", "SiteAdmin", new { frameId = frame.BikeFrameId }, null)
                             </td>
                         </tr>
                     }
@@ -42,7 +42,7 @@
 
 
             <br />
-            @Html.ActionLink("Add Frame", "AddFrame", "SiteAdmin", null, new { @class = "btn btn-primary" })
+            @Html.ActionLink("Add Make", "AddMake", "SiteAdmin", null, new { @class = "btn btn-primary" })
 
         </div>
     </div>

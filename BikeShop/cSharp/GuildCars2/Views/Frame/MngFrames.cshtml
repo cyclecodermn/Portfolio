@@ -14,17 +14,13 @@
 <body>
 
     <div class="row">
-        @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
+        @Html.Partial("_SideNavPartial")
         <div class="col-xs-9">
 
 
             <table class="table table-striped" style="width: 40%;">
-                <thead>
-                    <tr>
-                        <th>Frame</th>
-                        <th></th>
-                    </tr>
-                </thead>
+                <h3>Manage Frames</h3>
+                
                 <tbody>
                     @foreach (var frame in Model.BikeFrames)
 

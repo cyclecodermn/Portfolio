@@ -81,12 +81,14 @@ namespace bikes.data.ADO
             foreach (InvDetailedItem Bike in allBikes)
             {
                 Bike.BikeFrame = Bike.BikeFrame.TrimEnd();
+                FrameToDelete.BikeFrame = FrameToDelete.BikeFrame.TrimEnd();
+                //TODO: Remove the lines above after I get extra spaces removed from db
+
                 oneFrame = Bike.BikeFrame;
                 if (oneFrame == FrameToDelete.BikeFrame)
                     FramesFound.Add(Bike);
 
             }
-
 
             //FramesFound = allBikes.Where(b => b.BikeFrame == FrameToDelete.BikeFrame);
 

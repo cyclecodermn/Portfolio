@@ -1,18 +1,18 @@
 ﻿@model bikes.models.Tables.BikeFrameTable
 
 @{
-    ViewBag.Title = "EditFrame";
+    ViewBag.Title = "Edit Frame";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row">
     <div class="col-xs-12">
-        <h3>Edit Frame</h3>
+        <h2>Edit Frame</h2>
         @Html.ActionLink("Return to List", "MngFrames", "SiteAdmin")
     </div>
 </div>
 <div class="row">
-    @Html.Partial("_SideNavPartial")
+    @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
     <div class="col-xs-9">
         @Html.ValidationSummary()
 
@@ -27,6 +27,7 @@
             <span class="text-danger">@Html.ValidationMessageFor(m => m.BikeFrameId)</span>
             <br />
             <button type="submit" class="btn btn-sm btn-primary">Save</button>
+            @Html.ActionLink("Cancel", "MngFrames", "SiteAdmin", null, new { @class = "btn btn-sm btn-info" })
         }
     </div>
 </div>      

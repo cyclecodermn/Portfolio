@@ -43,4 +43,3 @@ C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\bikes.mo
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\bikes.models\obj\Debug\bikes.models.csproj.CopyComplete
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\bikes.models\obj\Debug\bikes.models.dll
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\bikes.models\obj\Debug\bikes.models.pdb
-C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\bikes.models\obj\Debug\bikes.models.csprojAssemblyReference.cache

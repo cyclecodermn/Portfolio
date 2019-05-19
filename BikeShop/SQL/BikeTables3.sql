@@ -65,32 +65,32 @@ GO
 
 CREATE TABLE ContactTable ( 
 	ContactId		int primary key identity(1,1) not null,
-	CntctLastName	varchar(64)  NOT NULL,
-	CntctFirstName	varchar(32)  NOT NULL,
-	CntctPhone		varchar(15),
-	CntctEmail		varchar(32),
-	CntctMessage	varchar(256)
+	CntctLastName	nvarchar(64)  NOT NULL,
+	CntctFirstName	nvarchar(32)  NOT NULL,
+	CntctPhone		nvarchar(15),
+	CntctEmail		nvarchar(32),
+	CntctMessage	nvarchar(256)
  ) 
 GO
 
 CREATE TABLE BikeMakeTable ( 
 	BikeMakeId		int primary key identity(1,1) not null,
-	BikeMake		varchar(32)  NOT NULL,
+	BikeMake		nvarchar(32)  NOT NULL,
 	MakeAddedDate	datetime NOT NULL DEFAULT GETDATE() 
 )
 GO
 CREATE TABLE BikeModelTable ( 
 	BikeModelId		int primary key identity(1,1) not null,
 	BikeMakelId		int foreign key references BikeModelTable(BikeModelId) null,	
-	BikeModel		varchar(32)  NOT NULL,
+	BikeModel		nvarchar(32)  NOT NULL,
 	ModelAddedDate	datetime NOT NULL DEFAULT GETDATE() 
  ) 
 GO
 
 CREATE TABLE SpecialTable ( 
 	SpecialId			int primary key identity(1,1) not null,
-	SpecialTitle		varchar(48)  NOT NULL,
-	SpecialDescription	varchar(256) NOT NULL,
+	SpecialTitle		nvarchar(48)  NOT NULL,
+	SpecialDescription	nvarchar(256) NOT NULL,
  ) 
 
 CREATE TABLE BikeTable ( 
@@ -107,10 +107,10 @@ CREATE TABLE BikeTable (
 	BikeIsNew			bit NOT NULL,
 	BikeCondition		int NOT NULL,
 	BikeNumGears		int NOT NULL,
-	BikeSerialNum		varchar(20)  NOT NULL,
+	BikeSerialNum		nvarchar(20)  NOT NULL,
 	BikeDescription		text  NOT NULL,
 	BikeDateAdded		date  NOT NULL,
-	BikePictName		varchar(64)
+	BikePictName		nvarchar(64)
  ) 
 GO
 
@@ -119,21 +119,21 @@ CREATE TABLE PurchasedTable (
 	BikeId				int foreign key references BikeTable(BikeId) NOT NULL,
 	PurchasedPrice      decimal NOT NULL,
 --	PurchasedPrice      decimal(5,2)NOT NULL,
-	PurchCustFirst		varchar(32) NOT NULL,
-	PurchCustLast		varchar(64) NOT NULL,
-	PurchCustPhone		varchar(16) NOT NULL,
-	PurchCustAddress1	varchar(64) NOT NULL,
-	PurchCustAddress2	varchar(64) NOT NULL,
-	PurchCustCity		varchar(64) NOT NULL,
-	PurchCustState		varchar(16) NOT NULL,
-	PurchCustPostCode	varchar(16) NOT NULL,
-	PurchFinType		varchar(32) NOT NULL
+	PurchCustFirst		nvarchar(32) NOT NULL,
+	PurchCustLast		nvarchar(64) NOT NULL,
+	PurchCustPhone		nvarchar(16) NOT NULL,
+	PurchCustAddress1	nvarchar(64) NOT NULL,
+	PurchCustAddress2	nvarchar(64) NOT NULL,
+	PurchCustCity		nvarchar(64) NOT NULL,
+	PurchCustState		nvarchar(16) NOT NULL,
+	PurchCustPostCode	nvarchar(16) NOT NULL,
+	PurchFinType		nvarchar(32) NOT NULL
  ) 
 
  
 CREATE TABLE FeatureTable ( 
 	FeatureId			int primary key identity(1,1) NOT NULL,
 	BikeId				int foreign key references BikeTable(BikeId) null,	
-	FeatureDescription	varchar(256),
+	FeatureDescription	nvarchar(256),
  ) 
 GO
