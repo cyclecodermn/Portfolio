@@ -119,7 +119,23 @@ BEGIN
 
 END
 GO
+-- -  -   -    -     -      -       -        -
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'FrameInsert')
+      DROP PROCEDURE FrameInsert
+GO
 
+CREATE PROCEDURE FrameInsert (
+	@FrameId int output,
+	@BikeFrame nvarchar(32)
+) AS
+BEGIN
+	INSERT INTO BikeFrameTable(BikeFrameName,FrameAddedDate)
+	VALUES (@BikeFrame,GETDATE());
+
+	SET @FrameId=SCOPE_IDENTITY();
+END
+GO
 -- -  -   -    -     -      -       -        -
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
    WHERE ROUTINE_NAME = 'FrameDelete')
@@ -203,6 +219,7 @@ BEGIN
  DBCC CHECKIDENT('BikeTable', RESEED, 1)
  DBCC CHECKIDENT('BikeModelTable', RESEED, 1)
  DBCC CHECKIDENT('BikeMakeTable', RESEED, 1)
+ DBCC CHECKIDENT('BikeFrameTable', RESEED, 1)
 
  DBCC CHECKIDENT('ContactTable', RESEED, 1)
 

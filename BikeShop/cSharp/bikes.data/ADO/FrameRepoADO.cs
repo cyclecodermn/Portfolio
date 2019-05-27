@@ -43,35 +43,32 @@ namespace bikes.data.ADO
             return frames;
         }
 
-        public static void Insert(BikeFrameTable Frame)
+        public void Insert(BikeFrameTable Frame)
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {
 
-                SqlCommand cmd = new SqlCommand("FrameAdd", cn);
+                SqlCommand cmd = new SqlCommand("FrameInsert", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
 
-
                 //3 lines below are from BikeAdd
-                SqlParameter param = new SqlParameter("@BikeId", SqlDbType.Int);
+                SqlParameter param = new SqlParameter("@FrameId", SqlDbType.Int);
                 param.Direction = ParameterDirection.Output;
 
                 cmd.Parameters.Add(param);
 
-
-
-
                //cmd.Parameters.AddWithValue("@BikeFrameId", Frame.BikeFrameId);
-                cmd.Parameters.AddWithValue("@BikeFrameName", Frame.BikeFrame);
+                cmd.Parameters.AddWithValue("@BikeFrame", Frame.BikeFrame);
                 //cmd.Parameters.AddWithValue("@UserId", Frame.UserId);
 
                 cn.Open();
                 cmd.ExecuteNonQuery();
+                Frame.BikeFrameId = (int)param.Value;
             }
         }
 
 
-        public static void Edit(BikeFrameTable Frame)
+        public void Edit(BikeFrameTable Frame)
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {

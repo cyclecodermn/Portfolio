@@ -54,12 +54,14 @@ GO
 CREATE TABLE BikeFrameTable ( 
 	BikeFrameId		int primary key identity(1,1) not null,
 	BikeFrameName	nvarchar(64) NOT NULL,
+	FrameAddedDate	datetime NOT NULL DEFAULT GETDATE(),
  ) 
 GO
 
 CREATE TABLE BikeColorTable ( 
 	BikeColorId		int primary key identity(1,1) not null,
 	BikeColor		nvarchar(32) NOT NULL,
+	MakeAddedDate	datetime NOT NULL DEFAULT GETDATE(),
  )
 GO 
 
@@ -110,7 +112,9 @@ CREATE TABLE BikeTable (
 	BikeSerialNum		nvarchar(20)  NOT NULL,
 	BikeDescription		text  NOT NULL,
 	BikeDateAdded		date  NOT NULL,
-	BikePictName		nvarchar(64)
+	BikePictName		nvarchar(64),
+	BikeAddedDate	datetime NOT NULL DEFAULT GETDATE() 
+
  ) 
 GO
 
@@ -127,7 +131,9 @@ CREATE TABLE PurchasedTable (
 	PurchCustCity		nvarchar(64) NOT NULL,
 	PurchCustState		nvarchar(16) NOT NULL,
 	PurchCustPostCode	nvarchar(16) NOT NULL,
-	PurchFinType		nvarchar(32) NOT NULL
+	PurchFinType		nvarchar(32) NOT NULL,
+	BikeAddedDate		datetime NOT NULL DEFAULT GETDATE() 
+
  ) 
 
  

@@ -400,14 +400,18 @@ namespace bikes.tests.IntegrationTests
         public void CanAddFrame()
         {
             BikeFrameTable FrameToAdd = new BikeFrameTable();
-            var repo = new FrameRepoADO();
+            var repo= new FrameRepoADO();
 
             //ModelToAdd.BikeModelId = 4;
             FrameToAdd.BikeFrame = "Test Frame";
 
             repo.Insert(FrameToAdd);
-            Assert.AreEqual(4, FrameToAdd.BikeModelId);
-
+            Assert.AreEqual(6, FrameToAdd.BikeFrameId);
+            if (FrameToAdd.BikeFrameId == 6)
+            {
+                //If the test succeeded, remove the test frame just added.
+                FrameRepoADO.Delete(FrameToAdd);
+            }
         }
 
         [Test]
@@ -421,6 +425,13 @@ namespace bikes.tests.IntegrationTests
 
             repo.Insert(ModelToAdd);
             Assert.AreEqual(4, ModelToAdd.BikeModelId);
+            
+            //TODO: Uncomment the code below after adding delete to ModelRepo
+            //if (ModelToAdd.BikeModelId == 6)
+            //{
+            //    //If the test succeeded, remove the test frame just added.
+            //    ModelRepoADO.Delete(ModelToAdd.BikeModelId);
+            //}
 
         }
         [Test]
@@ -434,7 +445,6 @@ namespace bikes.tests.IntegrationTests
 
             repo.Insert(MakeToAdd);
             Assert.AreEqual(5, MakeToAdd.BikeMakeId);
-
         }
 
     }
