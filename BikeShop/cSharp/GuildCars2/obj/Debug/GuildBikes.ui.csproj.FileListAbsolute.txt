@@ -365,9 +365,6 @@ C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCar
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\obj\Debug\GuildBikes.Migrations.init.resources
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\obj\Debug\GuildBikes.ui.csproj.GenerateResource.cache
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\obj\Debug\GuildBikes.ui.csproj.CoreCompileInputs.cache
-C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\GuildCars2.dll.config
-C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\GuildCars2.dll
-C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\GuildCars2.pdb
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\roslyn\csc.exe
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\roslyn\csc.exe.config
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\roslyn\csc.rsp
@@ -480,5 +477,8 @@ C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCar
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\Microsoft.AspNet.TelemetryCorrelation.xml
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\obj\Debug\GuildBikes.ui.csproj.CopyComplete
-C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\obj\Debug\GuildCars2.dll
-C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\obj\Debug\GuildCars2.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\GuildBikes.dll.config
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\GuildBikes.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\bin\GuildBikes.pdb
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\obj\Debug\GuildBikes.dll
+C:\Users\steve\OneDrive\Work\sGuild\Portfolio\Portfolio\BikeShop\cSharp\GuildCars2\obj\Debug\GuildBikes.pdb

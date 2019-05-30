@@ -105,8 +105,8 @@ namespace bikes.data.ADO
             string oneFrame = "";
             foreach (InvDetailedItem Bike in allBikes)
             {
-                Bike.BikeFrame = Bike.BikeFrame.TrimEnd();
-                FrameToDelete.BikeFrame = FrameToDelete.BikeFrame.TrimEnd();
+               // Bike.BikeFrame = Bike.BikeFrame.TrimEnd();
+               // FrameToDelete.BikeFrame = FrameToDelete.BikeFrame.TrimEnd();
                 //TODO: Remove the lines above after I get extra spaces removed from db
 
                 oneFrame = Bike.BikeFrame;

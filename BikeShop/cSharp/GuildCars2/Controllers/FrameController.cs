@@ -51,7 +51,8 @@ namespace GuildBikes.Controllers
             }
             if (ModelState.IsValid)
             {
-                FrameRepoADO.Insert(frame);
+                FrameRepoADO repo = new FrameRepoADO();
+                repo.Insert(frame);
                 //MajorRepository.Edit(major);
                 return RedirectToAction("MngFrames");
             }
@@ -80,7 +81,8 @@ namespace GuildBikes.Controllers
             }
             if (ModelState.IsValid)
             {
-                FrameRepoADO.Edit(frame);
+                FrameRepoADO repo = new FrameRepoADO();
+                repo.Edit(frame);
                 //MajorRepository.Edit(major);
                 return RedirectToAction("MngFrames");
             }
