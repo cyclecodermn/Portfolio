@@ -18,8 +18,11 @@
                 using (Html.BeginForm())
                 {
                     @Html.HiddenFor(m => m.Frame.BikeFrameId)
-                    <p>Are you sure that you wish to delete the frame <b>@Html.DisplayFor(m => m.Frame.BikeFrame)</b>?</p>
-                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    <p>Are you sure that you want to delete the frame <b>@Html.DisplayFor(m => m.Frame.BikeFrame)</b>?</p>
+                    @Html.ActionLink("Delete4", "DeleteFrame", "Frame", null, new { @class = "btn btn-sm btn-danger" })
+
+                    <b> </b>
+
                     @Html.ActionLink("Cancel", "MngFrames", "Frame", null, new { @class = "btn btn-sm btn-info" })
                 }
             }
