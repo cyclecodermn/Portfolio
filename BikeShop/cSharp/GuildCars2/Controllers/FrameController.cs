@@ -70,13 +70,6 @@ namespace GuildBikes.Controllers
             return View(frame);
         }
 
-        [HttpGet]
-        public ActionResult EditFrame(int frameId)
-        {
-            var frame = FrameRepoADO.GetById(frameId);
-            return View(frame);
-        }
-
         [HttpPost]
         public ActionResult EditFrame(BikeFrameTable frame)
         {
@@ -100,6 +93,13 @@ namespace GuildBikes.Controllers
         }
 
         [HttpGet]
+        public ActionResult EditFrame(int frameId)
+        {
+            var frame = FrameRepoADO.GetById(frameId);
+            return View(frame);
+        }
+
+        [HttpGet]
         public ActionResult DeleteFrame(int frameId)
         {
             FrameDeleteViewModel FrameToDelete = new FrameDeleteViewModel();
@@ -113,7 +113,7 @@ namespace GuildBikes.Controllers
             }
 
             //BikeFrameTable Frame = FrameRepoADO.GetById(id);
-           return View(FrameToDelete);
+            return View(FrameToDelete);
         }
 
         [HttpPost]
