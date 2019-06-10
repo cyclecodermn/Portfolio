@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADO\AdoUtils\SearchAll.cs" />
     <Compile Include="ADO\BikeRepoADO.cs" />
     <Compile Include="ADO\ColorRepoADO.cs" />
     <Compile Include="ADO\SpecialRepoADO.cs" />

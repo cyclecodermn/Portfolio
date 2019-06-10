@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using bikes.models.Queries;
 using bikes.models.Tables;
+using bikes.data.ADO.AdoUtils;
 
 namespace bikes.data.ADO
 {
@@ -57,7 +58,7 @@ namespace bikes.data.ADO
 
                 cmd.Parameters.Add(param);
 
-               //cmd.Parameters.AddWithValue("@BikeFrameId", Frame.BikeFrameId);
+                //cmd.Parameters.AddWithValue("@BikeFrameId", Frame.BikeFrameId);
                 cmd.Parameters.AddWithValue("@BikeFrame", Frame.BikeFrame);
                 //cmd.Parameters.AddWithValue("@UserId", Frame.UserId);
 
@@ -84,40 +85,49 @@ namespace bikes.data.ADO
             }
         }
 
-        public static IEnumerable<InvDetailedItem> Delete(BikeFrameTable FrameToDelete)
+        public static IEnumerable<BikeShortItem> Delete(BikeFrameTable FrameToDelete)
         {
-            List<BikeFrameTable> allFrames = new List<BikeFrameTable>();
-            FrameRepoADO FrameRepo = new FrameRepoADO();
+            //List<BikeFrameTable> allFrames = new List<BikeFrameTable>();
+            //FrameRepoADO FrameRepo = new FrameRepoADO();
 
-            allFrames = FrameRepo.GetAll();
+            //allFrames = FrameRepo.GetAll();
 
-            //BikeFrameTable FrameToDelete = new BikeFrameTable();
-            FrameToDelete = allFrames.FirstOrDefault(f => f.BikeFrameId == FrameToDelete.BikeFrameId);
+            ////BikeFrameTable FrameToDelete = new BikeFrameTable();
+            //FrameToDelete = allFrames.FirstOrDefault(f => f.BikeFrameId == FrameToDelete.BikeFrameId);
 
-            //Note: Change the reference to FrameRepoADO to the factory when I get this working
+            ////Note: Change the reference to FrameRepoADO to the factory when I get this working
 
-            List<InvDetailedItem> allBikes = new List<InvDetailedItem>();
-            BikeRepoADO BikeRepo = new BikeRepoADO();
-            allBikes = BikeRepo.GetAll();
+            //List<InvDetailedItem> allBikes = new List<InvDetailedItem>();
+            //BikeRepoADO BikeRepo = new BikeRepoADO();
+            //allBikes = BikeRepo.GetAll();
 
-            List<InvDetailedItem> FramesFound = new List<InvDetailedItem>();
+            //List<InvDetailedItem> FramesFound = new List<InvDetailedItem>();
 
-            string oneFrame = "";
-            foreach (InvDetailedItem Bike in allBikes)
-            {
-               // Bike.BikeFrame = Bike.BikeFrame.TrimEnd();
-               // FrameToDelete.BikeFrame = FrameToDelete.BikeFrame.TrimEnd();
-                //TODO: Remove the lines above after I get extra spaces removed from db
+            //string oneFrame = "";
+            //foreach (InvDetailedItem Bike in allBikes)
+            //{
+            //    // Bike.BikeFrame = Bike.BikeFrame.TrimEnd();
+            //    // FrameToDelete.BikeFrame = FrameToDelete.BikeFrame.TrimEnd();
+            //    //TODO: Remove the lines above after I get extra spaces removed from db
 
-                oneFrame = Bike.BikeFrame;
-                if (oneFrame == FrameToDelete.BikeFrame)
-                    FramesFound.Add(Bike);
+            //    oneFrame = Bike.BikeFrame;
+            //    if (oneFrame == FrameToDelete.BikeFrame)
+            //        FramesFound.Add(Bike);
 
-            }
+            //}
 
             //FramesFound = allBikes.Where(b => b.BikeFrame == FrameToDelete.BikeFrame);
 
-            if (FramesFound.Count() == 0)
+
+            BikeSearchParameters parameters = new BikeSearchParameters();
+            parameters.MakeModelOrYr = FrameToDelete.BikeFrame;
+
+            SearchAll BikeSearch = new SearchAll();
+            
+            IEnumerable<BikeShortItem> BikesWithFrame= BikeSearch.Search2(parameters);
+
+            if (BikesWithFrame.Count() == 0)
+            //if (FramesFound.Count() == 0)
             //The frame is not used by any bikes, so it can be deleted.
             {
                 using (var cn = new SqlConnection(Settings.GetConnectionString()))
@@ -133,7 +143,7 @@ namespace bikes.data.ADO
                 }
             }
 
-            return FramesFound;
+            return BikesWithFrame;
         }
 
         public static BikeFrameTable GetById(int frameId)

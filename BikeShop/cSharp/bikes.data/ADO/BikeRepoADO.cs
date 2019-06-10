@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using bikes.data.ADO.AdoUtils;
 using bikes.data.Interfaces;
 using bikes.models.Queries;
 using bikes.models.Tables;
@@ -280,154 +281,156 @@ namespace bikes.data.ADO
 
         public IEnumerable<BikeShortItem> Search(BikeSearchParameters parameters)
         {
-            List<BikeShortItem> Bikes = new List<BikeShortItem>();
+            SearchAll BikeSearch = new SearchAll();
+            return BikeSearch.Search2(parameters);
 
-            FrameRepoADO FrameRepo = new FrameRepoADO();
-            List<BikeFrameTable> AllFrames = FrameRepo.GetAll();
+        //    List<BikeShortItem> Bikes = new List<BikeShortItem>();
 
-            ModelRepoADO ModelRepo = new ModelRepoADO();
-            List<BikeModelTable> AllModels = ModelRepo.GetAll();
+        //    FrameRepoADO FrameRepo = new FrameRepoADO();
+        //    List<BikeFrameTable> AllFrames = FrameRepo.GetAll();
 
-            MakeRepoADO MakeRepo = new MakeRepoADO();
-            List<BikeMakeTable> AllMakes = MakeRepo.GetAll();
+        //    ModelRepoADO ModelRepo = new ModelRepoADO();
+        //    List<BikeModelTable> AllModels = ModelRepo.GetAll();
 
-            List<int> AllYears = new List<int>();
-            for (int i = 2000; i <= DateTime.Now.Year; i++)
-                AllYears.Add(i);
+        //    MakeRepoADO MakeRepo = new MakeRepoADO();
+        //    List<BikeMakeTable> AllMakes = MakeRepo.GetAll();
 
-            using (var cn = new SqlConnection(Settings.GetConnectionString()))
-            {
-                //string query = "SELECT TOP 12 BikeId, BikeMsrp, BikeListPrice, BikePictName FROM BikeTable bt ";
-                string query = GetAllBikeSQL();
+        //    List<int> AllYears = new List<int>();
+        //    for (int i = 2000; i <= DateTime.Now.Year; i++)
+        //        AllYears.Add(i);
 
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = cn;
+        //    using (var cn = new SqlConnection(Settings.GetConnectionString()))
+        //    {
+        //        //string query = "SELECT TOP 12 BikeId, BikeMsrp, BikeListPrice, BikePictName FROM BikeTable bt ";
+        //        string query = GetAllBikeSQL();
 
-                if (parameters.IsNew.HasValue)
-                {
+        //        SqlCommand cmd = new SqlCommand();
+        //        cmd.Connection = cn;
 
-                    query += "AND BikeIsNew = @BikeIsNew ";
-                    cmd.Parameters.AddWithValue("@BikeIsNew", parameters.IsNew);
-                }
+        //        if (parameters.IsNew.HasValue)
+        //        {
+        //            query += "AND BikeIsNew = @BikeIsNew ";
+        //            cmd.Parameters.AddWithValue("@BikeIsNew", parameters.IsNew);
+        //        }
 
 
-                if (parameters.MinPrice.HasValue)
-                {
-                    query += "AND BikeListPrice >= @MinPrice ";
-                    cmd.Parameters.AddWithValue("@MinPrice", parameters.MinPrice.Value);
-                }
+        //        if (parameters.MinPrice.HasValue)
+        //        {
+        //            query += "AND BikeListPrice >= @MinPrice ";
+        //            cmd.Parameters.AddWithValue("@MinPrice", parameters.MinPrice.Value);
+        //        }
 
-                if (parameters.MaxPrice.HasValue)
-                {
-                    query += "AND BikeListPrice <= @MaxPrice ";
-                    cmd.Parameters.AddWithValue("@MaxPrice", parameters.MaxPrice.Value);
-                }
+        //        if (parameters.MaxPrice.HasValue)
+        //        {
+        //            query += "AND BikeListPrice <= @MaxPrice ";
+        //            cmd.Parameters.AddWithValue("@MaxPrice", parameters.MaxPrice.Value);
+        //        }
 
-                if (parameters.MinYear.HasValue)
-                {
-                    query += "AND BikeYear >= @MinYear ";
-                    cmd.Parameters.AddWithValue("@MinYear", parameters.MinYear.Value);
-                }
-                if (parameters.MaxYear.HasValue)
-                {
-                    query += "AND BikeYear <= @MaxYear ";
-                    cmd.Parameters.AddWithValue("@MaxYear", parameters.MaxYear.Value);
-                }
+        //        if (parameters.MinYear.HasValue)
+        //        {
+        //            query += "AND BikeYear >= @MinYear ";
+        //            cmd.Parameters.AddWithValue("@MinYear", parameters.MinYear.Value);
+        //        }
+        //        if (parameters.MaxYear.HasValue)
+        //        {
+        //            query += "AND BikeYear <= @MaxYear ";
+        //            cmd.Parameters.AddWithValue("@MaxYear", parameters.MaxYear.Value);
+        //        }
 
-                //parameters.MakeModelOrYr = parameters.MakeModelOrYr.TrimStart();
-                //parameters.MakeModelOrYr = parameters.MakeModelOrYr.TrimEnd();
+        //        //parameters.MakeModelOrYr = parameters.MakeModelOrYr.TrimStart();
+        //        //parameters.MakeModelOrYr = parameters.MakeModelOrYr.TrimEnd();
 
-                if (!string.IsNullOrEmpty(parameters.MakeModelOrYr))
-                {
-                    bool isFrame = AllFrames.Any(p => p.BikeFrame == parameters.MakeModelOrYr);
+        //        if (!string.IsNullOrEmpty(parameters.MakeModelOrYr))
+        //        {
+        //            bool isFrame = AllFrames.Any(p => p.BikeFrame == parameters.MakeModelOrYr);
 
-                    if (isFrame)
-                    {
-                        query += "AND BikeFrameName LIKE @MakeModelOrYr ";
-                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr);
-                    }
+        //            if (isFrame)
+        //            {
+        //                query += "AND BikeFrameName LIKE @MakeModelOrYr ";
+        //                cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr);
+        //            }
 
-                    bool isModel = AllModels.Any(p => p.BikeModel == parameters.MakeModelOrYr);
+        //            bool isModel = AllModels.Any(p => p.BikeModel == parameters.MakeModelOrYr);
 
-                    if (isModel)
-                    {
-                        query += "AND BikeModel LIKE @MakeModelOrYr ";
-                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
-                    }
+        //            if (isModel)
+        //            {
+        //                query += "AND BikeModel LIKE @MakeModelOrYr ";
+        //                cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
+        //            }
 
-                    bool isMake = AllMakes.Any(p => p.BikeMake == parameters.MakeModelOrYr);
+        //            bool isMake = AllMakes.Any(p => p.BikeMake == parameters.MakeModelOrYr);
 
-                    if (isMake)
-                    {
-                        query += "AND BikeMake LIKE @MakeModelOrYr ";
-                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
-                    }
+        //            if (isMake)
+        //            {
+        //                query += "AND BikeMake LIKE @MakeModelOrYr ";
+        //                cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
+        //            }
 
-                    int searchNum;
-                    bool isNum = Int32.TryParse(parameters.MakeModelOrYr, out searchNum);
+        //            int searchNum;
+        //            bool isNum = Int32.TryParse(parameters.MakeModelOrYr, out searchNum);
 
-                    if (isNum && searchNum > 1999 && searchNum < DateTime.Now.Year + 1)
-                    {
-                        query += "AND BikeYear LIKE @MakeModelOrYr ";
-                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
-                    }
+        //            if (isNum && searchNum > 1999 && searchNum < DateTime.Now.Year + 1)
+        //            {
+        //                query += "AND BikeYear LIKE @MakeModelOrYr ";
+        //                cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
+        //            }
 
-                }
+        //        }
 
-                cmd.CommandText = query;
+        //        cmd.CommandText = query;
 
-                cn.Open();
+        //        cn.Open();
 
-                using (SqlDataReader dr = cmd.ExecuteReader())
-                {
-                    while (dr.Read())
-                    {
-                        BikeShortItem row = new BikeShortItem();
-                        //BikeId, BikeMsrp, BikeListPrice, ImageFileName
-                        row.BikeId = (int)dr["BikeId"];
-                        row.BikeIsNew = (bool)dr["BikeIsNew"];
-                        row.BikeYear = (int)dr["BikeYear"];
-                        row.BikeMake = (string)dr["BikeMake"];
-                        row.BikeModel = (string)dr["BikeModel"];
-                        row.BikeFrame = (string)dr["BikeFrameName"];
-                        row.BikeNumGears = (int)dr["BikeNumGears"];
-                        row.BikeCondition = (int)dr["BikeCondition"];
-                        row.BikeSerialNum = (string)dr["BikeSerialNum"];
-                        row.BikeTrimColor = (string)dr["trimColor"];
-                        row.BikeFrameColor = (string)dr["frameColor"];
+        //        using (SqlDataReader dr = cmd.ExecuteReader())
+        //        {
+        //            while (dr.Read())
+        //            {
+        //                BikeShortItem row = new BikeShortItem();
+        //                //BikeId, BikeMsrp, BikeListPrice, ImageFileName
+        //                row.BikeId = (int)dr["BikeId"];
+        //                row.BikeIsNew = (bool)dr["BikeIsNew"];
+        //                row.BikeYear = (int)dr["BikeYear"];
+        //                row.BikeMake = (string)dr["BikeMake"];
+        //                row.BikeModel = (string)dr["BikeModel"];
+        //                row.BikeFrame = (string)dr["BikeFrameName"];
+        //                row.BikeNumGears = (int)dr["BikeNumGears"];
+        //                row.BikeCondition = (int)dr["BikeCondition"];
+        //                row.BikeSerialNum = (string)dr["BikeSerialNum"];
+        //                row.BikeTrimColor = (string)dr["trimColor"];
+        //                row.BikeFrameColor = (string)dr["frameColor"];
 
-                        row.BikeMsrp = (decimal)dr["BikeMsrp"];
-                       // row.BikeMsrp = Math.Round(row.BikeMsrp, 2);
-                       // Math.round dind't add .00, pity.
+        //                row.BikeMsrp = (decimal)dr["BikeMsrp"];
+        //               // row.BikeMsrp = Math.Round(row.BikeMsrp, 2);
+        //               // Math.round dind't add .00, pity.
 
-                        row.BikeListPrice = (decimal)dr["BikeListPrice"];
-                        row.BikePictName = dr["BikePictName"].ToString();
+        //                row.BikeListPrice = (decimal)dr["BikeListPrice"];
+        //                row.BikePictName = dr["BikePictName"].ToString();
 
-                        Bikes.Add(row);
-                    }
-                }
-            }
+        //                Bikes.Add(row);
+        //            }
+        //        }
+        //    }
 
-            return Bikes;
+        //    return Bikes;
 
-        }
+        //}
 
-        private string GetAllBikeSQL()
-        {
-            string query = "SELECT TOP 12 BikeId, BikeMake, BikeModel, c.BikeColor AS frameColor, ";
-            query += " ct.BikeColor AS trimColor, BikeFrameName,BikeMsrp,BikeListPrice, ";
-            query += " BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName";
+        //private string GetAllBikeSQL()
+        //{
+        //    string query = "SELECT TOP 12 BikeId, BikeMake, BikeModel, c.BikeColor AS frameColor, ";
+        //    query += " ct.BikeColor AS trimColor, BikeFrameName,BikeMsrp,BikeListPrice, ";
+        //    query += " BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName";
 
-            query += " FROM BikeTable bt ";
-            query += " INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId ";
-            query += " INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId ";
+        //    query += " FROM BikeTable bt ";
+        //    query += " INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId ";
+        //    query += " INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId ";
 
-            query += " INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId ";
-            query += " INNER JOIN BikeColorTable c ON c.BikeColorId = bt.BikeFrameColorId ";
-            query += " INNER JOIN BikeColorTable ct ON ct.BikeColorId = bt.BikeTrimColorId ";
+        //    query += " INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId ";
+        //    query += " INNER JOIN BikeColorTable c ON c.BikeColorId = bt.BikeFrameColorId ";
+        //    query += " INNER JOIN BikeColorTable ct ON ct.BikeColorId = bt.BikeTrimColorId ";
 
-            query += " WHERE 1 = 1  ";
-            return query;
+        //    query += " WHERE 1 = 1  ";
+        //    return query;
         }
     }
 }
