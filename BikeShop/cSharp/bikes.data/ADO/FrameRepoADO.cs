@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using bikes.models.Queries;
 using bikes.models.Tables;
+using bikes.data.ADO.AdoUtils;
 
 namespace bikes.data.ADO
 {
@@ -57,7 +58,7 @@ namespace bikes.data.ADO
 
                 cmd.Parameters.Add(param);
 
-               //cmd.Parameters.AddWithValue("@BikeFrameId", Frame.BikeFrameId);
+                //cmd.Parameters.AddWithValue("@BikeFrameId", Frame.BikeFrameId);
                 cmd.Parameters.AddWithValue("@BikeFrame", Frame.BikeFrame);
                 //cmd.Parameters.AddWithValue("@UserId", Frame.UserId);
 
@@ -84,57 +85,32 @@ namespace bikes.data.ADO
             }
         }
 
-        public static IEnumerable<InvDetailedItem> Delete(BikeFrameTable FrameToDelete)
+        public static IEnumerable<BikeShortItem> CheckIfFrameIsUsed(BikeFrameTable FrameToDelete)
         {
-            List<BikeFrameTable> allFrames = new List<BikeFrameTable>();
-            FrameRepoADO FrameRepo = new FrameRepoADO();
 
-            allFrames = FrameRepo.GetAll();
+            BikeSearchParameters parameters = new BikeSearchParameters();
+            parameters.MakeModelOrYr = FrameToDelete.BikeFrame;
 
-            //BikeFrameTable FrameToDelete = new BikeFrameTable();
-            FrameToDelete = allFrames.FirstOrDefault(f => f.BikeFrameId == FrameToDelete.BikeFrameId);
+            SearchAll BikeSearch = new SearchAll();
+            
+            IEnumerable<BikeShortItem> BikesWithFrame= BikeSearch.Search2(parameters);
 
-            //Note: Change the reference to FrameRepoADO to the factory when I get this working
-
-            List<InvDetailedItem> allBikes = new List<InvDetailedItem>();
-            BikeRepoADO BikeRepo = new BikeRepoADO();
-            allBikes = BikeRepo.GetAll();
-
-            List<InvDetailedItem> FramesFound = new List<InvDetailedItem>();
-
-            string oneFrame = "";
-            foreach (InvDetailedItem Bike in allBikes)
-            {
-               // Bike.BikeFrame = Bike.BikeFrame.TrimEnd();
-               // FrameToDelete.BikeFrame = FrameToDelete.BikeFrame.TrimEnd();
-                //TODO: Remove the lines above after I get extra spaces removed from db
-
-                oneFrame = Bike.BikeFrame;
-                if (oneFrame == FrameToDelete.BikeFrame)
-                    FramesFound.Add(Bike);
-
-            }
-
-            //FramesFound = allBikes.Where(b => b.BikeFrame == FrameToDelete.BikeFrame);
-
-            if (FramesFound.Count() == 0)
-            //The frame is not used by any bikes, so it can be deleted.
-            {
-                using (var cn = new SqlConnection(Settings.GetConnectionString()))
-                {
-                    SqlCommand cmd = new SqlCommand("FrameDelete", cn);
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@BikeFrameId", FrameToDelete.BikeFrameId);
-
-                    cn.Open();
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-
-            return FramesFound;
+            return BikesWithFrame;
         }
+
+        public static void Delete(short FrameIdToDelete)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("FrameDelete", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BikeFrameId", FrameIdToDelete);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
 
         public static BikeFrameTable GetById(int frameId)
         {

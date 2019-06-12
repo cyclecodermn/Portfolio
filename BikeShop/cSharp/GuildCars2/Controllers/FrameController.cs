@@ -73,7 +73,6 @@ namespace GuildBikes.Controllers
         [HttpPost]
         public ActionResult EditFrame(BikeFrameTable frame)
         {
-
             if (string.IsNullOrEmpty(frame.BikeFrame))
             {
                 ModelState.AddModelError("FrameId",
@@ -83,7 +82,6 @@ namespace GuildBikes.Controllers
             {
                 FrameRepoADO repo = new FrameRepoADO();
                 repo.Edit(frame);
-                //MajorRepository.Edit(major);
                 return RedirectToAction("MngFrames");
             }
             else
@@ -104,7 +102,9 @@ namespace GuildBikes.Controllers
         {
             FrameDeleteViewModel FrameToDelete = new FrameDeleteViewModel();
             FrameToDelete.Frame = FrameRepoADO.GetById(frameId);
-            FrameToDelete.BikesWithFrame = FrameRepoADO.Delete(FrameToDelete.Frame);
+            FrameToDelete.BikesWithFrame = FrameRepoADO.CheckIfFrameIsUsed(FrameToDelete.Frame);
+            //TODO: 1-The line above deletes the frame before the web page appears confirming the frame should be deleted.
+
 
             if (FrameToDelete.BikesWithFrame.Count() > 0)
             {
@@ -117,7 +117,7 @@ namespace GuildBikes.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteFrame(BikeFrameTable FrameToDelete)
+        public ActionResult DeleteFrame(short FrameToDelete)
         {
             // *** Note: this method must receive a frame object since it's an overload
             //and the other recieves an int.
@@ -129,7 +129,7 @@ namespace GuildBikes.Controllers
             // FrameDeleteViewModel FrameToDelete = new FrameDeleteViewModel();
             FrameRepoADO.Delete(FrameToDelete);
 
-            return RedirectToAction("Frames");
+            return RedirectToAction("MngFrames");
 
         }
     }

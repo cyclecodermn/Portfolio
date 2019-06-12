@@ -21,7 +21,7 @@ namespace bikes.models.VMs
         // The IEnumerables below are populated from the database
         // All of them can be edited by the user or will be in future versions
         public IEnumerable<BikeTable> BikeFramesUsed { get; set; }
-        public IEnumerable<InvDetailedItem> BikesWithFrame { get; set; }
+        public IEnumerable<BikeShortItem> BikesWithFrame { get; set; }
         public string message { get; set; }
 
     }
