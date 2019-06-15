@@ -1,0 +1,29 @@
+﻿@model bikes.models.Tables.BikeModelTable
+
+@{
+    ViewBag.Title = "Edit Model";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
+    <div class="col-xs-9">
+        <h3>Edit Model</h3>
+
+        @Html.ValidationSummary()
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.BikeModelId)
+            <div class="form-group">
+
+                @Html.TextBoxFor(m => m.BikeModel, new { @class = "form-control", placeholder = "Model" })
+            </div>
+
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.BikeModelId)</span>
+            <br />
+            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+            @Html.ActionLink("Cancel", "MngModels", "Model", null, new { @class = "btn btn-sm btn-info" })
+        }
+    </div>
+</div>      

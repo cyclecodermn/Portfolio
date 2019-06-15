@@ -1,0 +1,47 @@
+﻿@model bikes.models.VMs.ModelsListViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Manage Models</title>
+</head>
+<body>
+
+    <div class="row">
+        @Html.Partial("_SideNavPartial")
+        <div class="col-xs-9">
+
+
+            <table class="table table-striped" style="width: 40%;">
+                <h3>Manage Models</h3>
+                
+                <tbody>
+                    @foreach (var bModel in Model.BikeModels)
+
+                    {
+                        <tr>
+                            <td>@bModel.BikeModel</td>
+                            <td align="right">
+                                @Html.ActionLink("Edit", "EditModel", "Model", new { modelId = bModel.BikeModelId }, null) |
+                                @Html.ActionLink("Delete", "DeleteModel", "Model", new { modelId = bModel.BikeModelId }, null)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+            <br />
+            @Html.ActionLink("Add Model", "AddModel", "Model", null, new { @class = "btn btn-primary" })
+
+        </div>
+    </div>
+
+</body>
+</html>

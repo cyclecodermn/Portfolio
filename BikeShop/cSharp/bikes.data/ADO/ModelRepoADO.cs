@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bikes.models.Tables;
+using bikes.models.Queries;
+using bikes.data.ADO.AdoUtils;
 
 namespace bikes.data.ADO
 {
@@ -62,6 +64,77 @@ namespace bikes.data.ADO
                 //. = (int)param.Value;
                 NewModel.BikeModelId = (int)param.Value;
             }
+        }
+
+        public void Edit(BikeModelTable Model)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("ModelUpdate", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@BikeModelId", Model.BikeModelId);
+                cmd.Parameters.AddWithValue("@BikeModelName", Model.BikeModel);
+                //cmd.Parameters.AddWithValue("@UserId", Model.UserId);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static IEnumerable<BikeShortItem> CheckIfModelIsUsed(BikeModelTable ModelToDelete)
+        {
+
+            BikeSearchParameters parameters = new BikeSearchParameters();
+            parameters.MakeModelOrYr = ModelToDelete.BikeModel;
+
+            SearchAll BikeSearch = new SearchAll();
+
+            IEnumerable<BikeShortItem> BikesWithModel = BikeSearch.Search2(parameters);
+
+            return BikesWithModel;
+        }
+
+        public static void Delete(int ModelIdToDelete)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("ModelDelete", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BikeModelId", ModelIdToDelete);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static BikeModelTable GetById(int modelId)
+        {
+            BikeModelTable Model = null;
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("ModelSelect", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@BikeModelId", modelId);
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        Model = new BikeModelTable();
+                        Model.BikeModelId = (int)dr["BikeModelId"];
+                        Model.BikeModel = (string)dr["BikeModelName"];
+                        // Model.UserId = dr["UserId"].ToString();
+
+                    }
+                }
+            }
+
+            return Model;
         }
     }
 }

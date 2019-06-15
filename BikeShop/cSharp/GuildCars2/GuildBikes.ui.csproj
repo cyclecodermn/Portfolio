@@ -192,6 +192,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\FrameController.cs" />
+    <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Controllers\SiteAdminController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -284,6 +285,10 @@
     <Content Include="Views\Frame\DeleteFrame.cshtml" />
     <Content Include="Views\Frame\MngFrames.cshtml" />
     <Content Include="Views\Frame\AddFrame.cshtml" />
+    <Content Include="Views\Model\AddModel.cshtml" />
+    <Content Include="Views\Model\DeleteModel.cshtml" />
+    <Content Include="Views\Model\EditModel.cshtml" />
+    <Content Include="Views\Model\MngModels.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,38 @@
+﻿@using bikes.models.Tables
+@using bikes.models.VMs
+@model bikes.models.VMs.ModelDeleteViewModel
+
+@{
+    ViewBag.Title = "DeleteModel";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
+    <div class="col-xs-9">
+        <h3>Delete Model</h3>
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.Model.BikeModelId)
+
+            if (Model.message.IsEmpty())
+            {
+                using (Html.BeginForm())
+                {
+                    <p>Are you sure that you wish to delete the model <b>@Html.DisplayFor(m => m.Model.BikeModel)</b>?</p>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete2</button>
+                    @*@Html.ActionLink("Delete3", "DeleteModel", "Model", new { ModelToDelete=Model.Model }, new { @class = "btn btn-sm btn-danger" })*@
+                    @Html.ActionLink("Cancel", "MngModels", "Model", null, new { @class = "btn btn-sm btn-info" })
+                }
+            }
+            else
+            {
+                @Model.message<p></p>
+                @Html.ActionLink("Return to List", "MngModels", "Model", null, new { @class = "btn btn-sm btn-info" })
+
+            }
+        }
+
+    </div>
+</div>   
