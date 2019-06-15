@@ -12,15 +12,17 @@
     <div class="col-xs-9">
         <h3>Delete Frame</h3>
 
-        @{
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.Frame.BikeFrameId)
+
             if (Model.message.IsEmpty())
             {
                 using (Html.BeginForm())
                 {
-                    @Html.HiddenFor(m => m.Frame.BikeFrameId)
                     <p>Are you sure that you wish to delete the frame <b>@Html.DisplayFor(m => m.Frame.BikeFrame)</b>?</p>
-                    @*<button type="submit" class="btn btn-sm btn-danger">Delete2</button>*@
-                    @Html.ActionLink("Delete3", "DeleteFrame", "Frame", new { FrameToDelete=Model.Frame.BikeFrameId }, new { @class = "btn btn-sm btn-danger" })
+                    <button type="submit" class="btn btn-sm btn-danger">Delete2</button>
+                    @*@Html.ActionLink("Delete3", "DeleteFrame", "Frame", new { FrameToDelete=Model.Frame }, new { @class = "btn btn-sm btn-danger" })*@
                     @Html.ActionLink("Cancel", "MngFrames", "Frame", null, new { @class = "btn btn-sm btn-info" })
                 }
             }

@@ -98,7 +98,7 @@ namespace bikes.data.ADO
             return BikesWithFrame;
         }
 
-        public static void Delete(short FrameIdToDelete)
+        public static void Delete(int FrameIdToDelete)
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))
             {

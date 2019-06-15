@@ -410,7 +410,7 @@ namespace bikes.tests.IntegrationTests
             if (FrameToAdd.BikeFrameId == 6)
             {
                 //If the test succeeded, remove the test frame just added.
-                FrameRepoADO.Delete(FrameToAdd);
+                FrameRepoADO.Delete(FrameToAdd.BikeFrameId);
             }
         }
 

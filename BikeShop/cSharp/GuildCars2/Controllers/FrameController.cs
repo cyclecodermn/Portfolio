@@ -108,6 +108,8 @@ namespace GuildBikes.Controllers
 
             if (FrameToDelete.BikesWithFrame.Count() > 0)
             {
+                //Warn user that the frame cannot be deleted since some bikes use the frame.
+                //This prevents an SQL err when trying to delete a FK in the bike table.
                 FrameToDelete.message = "The frame " + FrameToDelete.Frame.BikeFrame + " is used by " +
                                         FrameToDelete.BikesWithFrame.Count() + " bike(s), so it cannot be deleted.";
             }
@@ -117,18 +119,9 @@ namespace GuildBikes.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteFrame(short FrameToDelete)
+        public ActionResult DeleteFrame(BikeFrameTable frame)
         {
-            // *** Note: this method must receive a frame object since it's an overload
-            //and the other recieves an int.
-
-            //Current plan is for this section to just delete the frame. The Get method
-            //above will confirm the frame is not used by any bikes.
-
-            //IEnumerable<InvDetailedItem> BikesWithFrames = FrameRepoADO.Delete(FrameToDelete.Frame);
-            // FrameDeleteViewModel FrameToDelete = new FrameDeleteViewModel();
-            FrameRepoADO.Delete(FrameToDelete);
-
+            FrameRepoADO.Delete(frame.BikeFrameId);
             return RedirectToAction("MngFrames");
 
         }
