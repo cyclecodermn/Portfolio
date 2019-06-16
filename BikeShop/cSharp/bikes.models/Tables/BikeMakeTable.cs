@@ -10,7 +10,7 @@ namespace bikes.models.Tables
     {
         public int BikeMakeId { get; set; }
         public int BikeModelId { get; set; }
-        public string BikeMake { get; set; }
+        public string BikeMakeName { get; set; }
         public DateTime MakeAddedDate { get; set; }
 
     }

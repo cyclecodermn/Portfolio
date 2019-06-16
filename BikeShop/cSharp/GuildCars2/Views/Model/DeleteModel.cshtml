@@ -20,7 +20,7 @@
             {
                 using (Html.BeginForm())
                 {
-                    <p>Are you sure that you wish to delete the model <b>@Html.DisplayFor(m => m.Model.BikeModel)</b>?</p>
+                    <p>Are you sure that you wish to delete the model <b>@Html.DisplayFor(m => m.Model.BikeModelName)</b>?</p>
                     <button type="submit" class="btn btn-sm btn-danger">Delete2</button>
                     @*@Html.ActionLink("Delete3", "DeleteModel", "Model", new { ModelToDelete=Model.Model }, new { @class = "btn btn-sm btn-danger" })*@
                     @Html.ActionLink("Cancel", "MngModels", "Model", null, new { @class = "btn btn-sm btn-info" })

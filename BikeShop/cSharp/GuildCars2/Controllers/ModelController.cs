@@ -44,7 +44,7 @@ namespace GuildBikes.Controllers
         public ActionResult AddModel(BikeModelTable model)
         {
 
-            if (string.IsNullOrEmpty(model.BikeModel))
+            if (string.IsNullOrEmpty(model.BikeModelName))
             {
                 ModelState.AddModelError("ModelId",
                     "Please enter the name of the model.");
@@ -73,7 +73,7 @@ namespace GuildBikes.Controllers
         [HttpPost]
         public ActionResult EditModel(BikeModelTable model)
         {
-            if (string.IsNullOrEmpty(model.BikeModel))
+            if (string.IsNullOrEmpty(model.BikeModelName))
             {
                 ModelState.AddModelError("ModelId",
                     "Please enter the name of the model.");
@@ -110,7 +110,7 @@ namespace GuildBikes.Controllers
             {
                 //Warn user that the model cannot be deleted since some bikes use the model.
                 //This prevents an SQL err when trying to delete a FK in the bike table.
-                ModelToDelete.message = "The model " + ModelToDelete.Model.BikeModel + " is used by " +
+                ModelToDelete.message = "The model " + ModelToDelete.Model.BikeModelName + " is used by " +
                                         ModelToDelete.BikesWithModel.Count() + " bike(s), so it cannot be deleted.";
             }
 

@@ -32,7 +32,7 @@ namespace bikes.data.ADO
                     {
                         BikeModelTable currentRow = new BikeModelTable();
                         currentRow.BikeModelId = (int) dr["BikeModelId"];
-                        currentRow.BikeModel = dr["BikeModel"].ToString();
+                        currentRow.BikeModelName = dr["BikeModelName"].ToString();
 
                         Models.Add(currentRow);
                     }
@@ -55,7 +55,7 @@ namespace bikes.data.ADO
                 cmd.Parameters.Add(param);
 
  //               cmd.Parameters.AddWithValue("@ModelId", NewModel.BikeModelId);
-                cmd.Parameters.AddWithValue("@BikeModel", NewModel.BikeModel);
+                cmd.Parameters.AddWithValue("@BikeModelName", NewModel.BikeModelName);
 
                 cn.Open();
 
@@ -74,7 +74,7 @@ namespace bikes.data.ADO
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@BikeModelId", Model.BikeModelId);
-                cmd.Parameters.AddWithValue("@BikeModelName", Model.BikeModel);
+                cmd.Parameters.AddWithValue("@BikeModelName", Model.BikeModelName);
                 //cmd.Parameters.AddWithValue("@UserId", Model.UserId);
 
                 cn.Open();
@@ -86,7 +86,7 @@ namespace bikes.data.ADO
         {
 
             BikeSearchParameters parameters = new BikeSearchParameters();
-            parameters.MakeModelOrYr = ModelToDelete.BikeModel;
+            parameters.MakeModelOrYr = ModelToDelete.BikeModelName;
 
             SearchAll BikeSearch = new SearchAll();
 
@@ -127,7 +127,7 @@ namespace bikes.data.ADO
                     {
                         Model = new BikeModelTable();
                         Model.BikeModelId = (int)dr["BikeModelId"];
-                        Model.BikeModel = (string)dr["BikeModelName"];
+                        Model.BikeModelName = (string)dr["BikeModelName"];
                         // Model.UserId = dr["UserId"].ToString();
 
                     }

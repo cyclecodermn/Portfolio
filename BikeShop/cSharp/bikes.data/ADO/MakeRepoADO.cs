@@ -30,7 +30,7 @@ namespace bikes.data.ADO
                     {
                         BikeMakeTable currentRow = new BikeMakeTable();
                         currentRow.BikeMakeId = (int)dr["BikeMakeId"];
-                        currentRow.BikeMake = dr["BikeMake"].ToString();
+                        currentRow.BikeMakeName = dr["BikeMakeName"].ToString();
 
                         Makes.Add(currentRow);
                     }
@@ -54,7 +54,7 @@ namespace bikes.data.ADO
 
                 //               cmd.Parameters.AddWithValue("@MakeId", NewMake.BikeMakeId);
                 //cmd.Parameters.AddWithValue("@BikeMakeId", NewMake.BikeMakeId);
-                cmd.Parameters.AddWithValue("@BikeMake", NewMake.BikeMake);
+                cmd.Parameters.AddWithValue("@BikeMakeName", NewMake.BikeMakeName);
 
                 cn.Open();
 

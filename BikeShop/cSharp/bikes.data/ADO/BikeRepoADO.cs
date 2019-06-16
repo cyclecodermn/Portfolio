@@ -165,8 +165,8 @@ namespace bikes.data.ADO
 
                         row.FeatureId = (int)dr["FeatureId"];
                         row.BikeId = (int)dr["BikeId"];
-                        row.BikeMake = (string)dr["BikeMake"];
-                        row.BikeModel = (string)dr["BikeModel"];
+                        row.BikeMake = (string)dr["BikeMakeName"];
+                        row.BikeModel = (string)dr["BikeModelName"];
                         row.BikeYear = (int)dr["BikeYear"];
                         row.BikeListPrice = (decimal)dr["BikeListPrice"];
                         row.BikeListPrice = Math.Round(row.BikeListPrice, 2);
@@ -214,8 +214,8 @@ namespace bikes.data.ADO
                         bike.BikeSerialNum = dr["BikeSerialNum"].ToString();
                         bike.BikeDescription = dr["BikeDescription"].ToString();
 
-                        bike.BikeMake = dr["BikeMake"].ToString();
-                        bike.BikeModel = dr["BikeModel"].ToString();
+                        bike.BikeMake = dr["BikeMakeName"].ToString();
+                        bike.BikeModel = dr["BikeModelName"].ToString();
                         bike.BikeFrame = dr["BikeFrameName"].ToString();
                         bike.FrameColor = dr["FrameColor"].ToString();
                         bike.TrimColor = dr["TrimColor"].ToString();
@@ -251,8 +251,8 @@ namespace bikes.data.ADO
                         InvDetailedItem currentRow = new InvDetailedItem();
 
                         currentRow.BikeId = (int)dr["BikeId"];
-                        currentRow.BikeMake = (string)dr["BikeMake"];
-                        currentRow.BikeModel = (string)dr["BikeModel"];
+                        currentRow.BikeMake = (string)dr["BikeMakeName"];
+                        currentRow.BikeModel = (string)dr["BikeModelName"];
                         currentRow.FrameColor = (string)dr["FrameColor"];
                         currentRow.TrimColor = (string)dr["TrimColor"];
                         currentRow.BikeFrame = (string)dr["BikeFrameName"];

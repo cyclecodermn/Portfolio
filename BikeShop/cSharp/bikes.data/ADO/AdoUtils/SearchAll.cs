@@ -79,19 +79,19 @@ namespace bikes.data.ADO.AdoUtils
                         cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr);
                     }
 
-                    bool isModel = AllModels.Any(p => p.BikeModel == parameters.MakeModelOrYr);
+                    bool isModel = AllModels.Any(p => p.BikeModelName == parameters.MakeModelOrYr);
 
                     if (isModel)
                     {
-                        query += "AND BikeModel LIKE @MakeModelOrYr ";
+                        query += "AND BikeModelName LIKE @MakeModelOrYr ";
                         cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
                     }
 
-                    bool isMake = AllMakes.Any(p => p.BikeMake == parameters.MakeModelOrYr);
+                    bool isMake = AllMakes.Any(p => p.BikeMakeName == parameters.MakeModelOrYr);
 
                     if (isMake)
                     {
-                        query += "AND BikeMake LIKE @MakeModelOrYr ";
+                        query += "AND BikeMakeName LIKE @MakeModelOrYr ";
                         cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
                     }
 
@@ -119,8 +119,8 @@ namespace bikes.data.ADO.AdoUtils
                         row.BikeId = (int)dr["BikeId"];
                         row.BikeIsNew = (bool)dr["BikeIsNew"];
                         row.BikeYear = (int)dr["BikeYear"];
-                        row.BikeMake = (string)dr["BikeMake"];
-                        row.BikeModel = (string)dr["BikeModel"];
+                        row.BikeMakeName = (string)dr["BikeMakeName"];
+                        row.BikeModelName = (string)dr["BikeModelName"];
                         row.BikeFrame = (string)dr["BikeFrameName"];
                         row.BikeNumGears = (int)dr["BikeNumGears"];
                         row.BikeCondition = (int)dr["BikeCondition"];
@@ -146,7 +146,7 @@ namespace bikes.data.ADO.AdoUtils
 
         private string GetAllBikeSQL()
         {
-            string query = "SELECT TOP 12 BikeId, BikeMake, BikeModel, c.BikeColor AS frameColor, ";
+            string query = "SELECT TOP 12 BikeId, BikeMakeName, BikeModelName, c.BikeColor AS frameColor, ";
             query += " ct.BikeColor AS trimColor, BikeFrameName,BikeMsrp,BikeListPrice, ";
             query += " BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName";
 

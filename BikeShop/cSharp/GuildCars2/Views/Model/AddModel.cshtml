@@ -17,7 +17,7 @@
             @Html.HiddenFor(m => m.BikeModelId)
             <div class="form-group">
 
-                @Html.TextBoxFor(m => m.BikeModel, new { @class = "form-control", placeholder = "New Model Name" })
+                @Html.TextBoxFor(m => m.BikeModelName, new { @class = "form-control", placeholder = "New Model Name" })
             </div>
 
             <span class="text-danger">@Html.ValidationMessageFor(m => m.BikeModelId)</span>

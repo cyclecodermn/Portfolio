@@ -31,7 +31,7 @@ CREATE PROCEDURE OneBikeDetails (
 ) AS
 BEGIN
 
-SELECT	BikeMake,BikeModel, c.BikeColor AS frameColor,  
+SELECT	BikeMakeName,BikeModelName, c.BikeColor AS frameColor,  
 		ct.BikeColor AS trimColor, BikeFrameName,BikeMsrp,BikeListPrice,
 		BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
 	FROM BikeTable bt
@@ -59,7 +59,7 @@ CREATE PROCEDURE BikeSelectAll
 AS
 BEGIN
 
-SELECT	BikeId,BikeMake,BikeModel, c.BikeColor AS frameColor,  
+SELECT	BikeId,BikeMakeName,BikeModelName, c.BikeColor AS frameColor,  
 		ct.BikeColor AS trimColor, BikeFrameName,BikeMsrp,BikeListPrice,
 		BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName
 	FROM BikeTable bt
@@ -182,6 +182,61 @@ BEGIN
 	FROM BikeColorTable
 END
 GO
+
+-- -  -   -    -     -      -       -        -
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'ModelDelete')
+      DROP PROCEDURE ModelDelete
+GO
+
+CREATE PROCEDURE ModelDelete (
+	@BikeModelId int
+
+) AS
+BEGIN
+	DELETE FROM BikeModelTable
+	WHERE BikeModelId = @BikeModelId
+END
+GO
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'ModelUpdate')
+		DROP PROCEDURE ModelUpdate
+GO
+
+CREATE PROCEDURE ModelUpdate (
+	@BikeModelId			int,
+	@BikeModelName			char(64)
+) AS
+BEGIN
+	UPDATE BikeModelTable SET
+		BikeModelName	= @BikeModelName
+	WHERE BikeModelId	= @BikeModelId;
+END
+GO
+
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'ModelSelect')
+		DROP PROCEDURE ModelSelect
+GO
+
+CREATE PROCEDURE ModelSelect (
+	@BikeModelId int
+
+) AS
+BEGIN
+	SELECT BikeModelId, BikeModelName
+	FROM BikeModelTable
+	WHERE BikeModelId = @BikeModelId
+
+END
+GO
+-- -  -   -    -     -      -       -        -
+
+
 -- -  -   -    -     -      -       -        -
 IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
 	WHERE ROUTINE_NAME = 'ModelsSelectAll')
@@ -190,7 +245,7 @@ GO
 
 CREATE PROCEDURE ModelsSelectAll AS
 BEGIN
-	SELECT BikeModelId, BikeModel 
+	SELECT BikeModelId, BikeModelName
 	FROM BikeModelTable
 END
 GO
@@ -270,7 +325,7 @@ delete from BikeColorTable ;
 delete from BikeMakeTable;
 	SET IDENTITY_INSERT BikeMakeTable ON;
 	
-	INSERT INTO BikeMakeTable (BikeMakeId, BikeMake)
+	INSERT INTO BikeMakeTable (BikeMakeId, BikeMakeName)
 	VALUES
 	(1,'Giant'),
 	(2,'Surley'),
@@ -282,7 +337,7 @@ delete from BikeMakeTable;
 	delete from BikeModelTable;
 	SET IDENTITY_INSERT BikeModelTable ON;
 	
-	INSERT INTO BikeModelTable (BikeModelId, BikeMakelId, BikeModel)
+	INSERT INTO BikeModelTable (BikeModelId, BikeMakelId, BikeModelName)
 	VALUES
 	(1,1,'Long Haul Trucker'),
 	(2,2,'RidgeBack'),
@@ -490,7 +545,7 @@ GO
 
 CREATE PROCEDURE GetFeaturedBikes AS
 	BEGIN
-		SELECT	FeatureId, bt.BikeId, BikeYear, BikeMake,BikeModel, BikeListPrice, BikePictName
+		SELECT	FeatureId, bt.BikeId, BikeYear, BikeMakeName,BikeModelName, BikeListPrice, BikePictName
 			FROM FeatureTable ft
 				INNER JOIN BikeTable bt ON bt.BikeId = ft.BikeId
 				INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
@@ -511,7 +566,7 @@ CREATE PROCEDURE GetNewOrUsedBikes(
 )
 AS
 	BEGIN
-		SELECT	bt.BikeId, BikeYear, BikeMake,BikeModel, BikeListPrice, BikePictName
+		SELECT	bt.BikeId, BikeYear, BikeMakeName,BikeModelName, BikeListPrice, BikePictName
 			FROM BikeTable bt
 				INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId
 				INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId 
@@ -577,11 +632,11 @@ GO
 
 CREATE PROCEDURE ModelInsert (
 	@ModelId int output,
-	@BikeModel nvarchar(32)
+	@BikeModelName nvarchar(32)
 ) AS
 BEGIN
-	INSERT INTO BikeModelTable(BikeModel,ModelAddedDate)
-	VALUES  (@BikeModel,GETDATE());
+	INSERT INTO BikeModelTable(BikeModelName,ModelAddedDate)
+	VALUES  (@BikeModelName,GETDATE());
 
 	SET @ModelId=SCOPE_IDENTITY();
 END
@@ -597,7 +652,7 @@ CREATE PROCEDURE MakeInsert (
 	@BikeMake nvarchar(32)
 ) AS
 BEGIN
-	INSERT INTO BikeMakeTable(BikeMake,MakeAddedDate)
+	INSERT INTO BikeMakeTable(BikeMakeName,MakeAddedDate)
 	VALUES (@BikeMake,GETDATE());
 
 	SET @MakeId=SCOPE_IDENTITY();
@@ -627,7 +682,7 @@ GO
 
 CREATE PROCEDURE MakesSelectAll AS
 BEGIN
-	SELECT BikeMakeId, BikeMake 
+	SELECT BikeMakeId, BikeMakeName 
 	FROM BikeMakeTable
 END
 GO

@@ -10,7 +10,7 @@ namespace bikes.models.Tables
     public class BikeModelTable
     {
     public int BikeModelId { get; set; }
-    public string BikeModel { get; set; }
+    public string BikeModelName { get; set; }
     public DateTime ModelAddedDate { get; set; }
 
     }

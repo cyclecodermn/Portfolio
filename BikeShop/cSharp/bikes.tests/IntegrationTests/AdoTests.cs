@@ -52,9 +52,9 @@ namespace bikes.tests.IntegrationTests
 
             Assert.AreEqual(4, found.Count());
 
-            Assert.AreEqual("RidgeBack", found[0].BikeModel);
-            Assert.AreEqual("RidgeBack", found[1].BikeModel);
-            Assert.AreEqual("RidgeBack", found[2].BikeModel);
+            Assert.AreEqual("RidgeBack", found[0].BikeModelName);
+            Assert.AreEqual("RidgeBack", found[1].BikeModelName);
+            Assert.AreEqual("RidgeBack", found[2].BikeModelName);
 
         }
 
@@ -175,7 +175,7 @@ namespace bikes.tests.IntegrationTests
             int ModelCount = Models.Count();
             Assert.AreEqual(3, ModelCount);
 
-            Assert.AreEqual("RidgeBack", Models[1].BikeModel);
+            Assert.AreEqual("RidgeBack", Models[1].BikeModelName);
         }
 
         [Test]
@@ -187,7 +187,7 @@ namespace bikes.tests.IntegrationTests
             int MakeCount = Makes.Count();
             Assert.AreEqual(4, MakeCount);
 
-            Assert.AreEqual("Surley", Makes[1].BikeMake);
+            Assert.AreEqual("Surley", Makes[1].BikeMakeName);
         }
 
 
@@ -421,7 +421,7 @@ namespace bikes.tests.IntegrationTests
             var repo = new ModelRepoADO();
 
             //ModelToAdd.BikeModelId = 4;
-            ModelToAdd.BikeModel = "329-1858";
+            ModelToAdd.BikeModelName = "329-1858";
 
             repo.Insert(ModelToAdd);
             Assert.AreEqual(4, ModelToAdd.BikeModelId);
@@ -441,7 +441,7 @@ namespace bikes.tests.IntegrationTests
             var repo = new MakeRepoADO();
 
             //MakeToAdd.BikeMakeId = 4;
-            MakeToAdd.BikeMake = "329-1858";
+            MakeToAdd.BikeMakeName = "329-1858";
 
             repo.Insert(MakeToAdd);
             Assert.AreEqual(5, MakeToAdd.BikeMakeId);

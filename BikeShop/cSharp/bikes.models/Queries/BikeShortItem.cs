@@ -11,8 +11,8 @@ namespace bikes.models.Queries
         public int BikeId { get; set; }
         public bool BikeIsNew { get; set; }
         public int BikeYear { get; set; }
-        public string BikeMake { get; set; }
-        public string BikeModel { get; set; }
+        public string BikeMakeName { get; set; }
+        public string BikeModelName { get; set; }
         public string BikeFrame { get; set; }
         public int BikeNumGears { get; set; }
         public int BikeCondition { get; set; }
