@@ -77,14 +77,14 @@ GO
 
 CREATE TABLE BikeMakeTable ( 
 	BikeMakeId		int primary key identity(1,1) not null,
-	BikeMake		nvarchar(32)  NOT NULL,
+	BikeMakeName	nvarchar(32)  NOT NULL,
 	MakeAddedDate	datetime NOT NULL DEFAULT GETDATE() 
 )
 GO
 CREATE TABLE BikeModelTable ( 
 	BikeModelId		int primary key identity(1,1) not null,
 	BikeMakelId		int foreign key references BikeModelTable(BikeModelId) null,	
-	BikeModel		nvarchar(32)  NOT NULL,
+	BikeModelName	nvarchar(32)  NOT NULL,
 	ModelAddedDate	datetime NOT NULL DEFAULT GETDATE() 
  ) 
 GO

@@ -649,11 +649,11 @@ GO
 
 CREATE PROCEDURE MakeInsert (
 	@MakeId int output,
-	@BikeMake nvarchar(32)
+	@BikeMakeName nvarchar(32)
 ) AS
 BEGIN
 	INSERT INTO BikeMakeTable(BikeMakeName,MakeAddedDate)
-	VALUES (@BikeMake,GETDATE());
+	VALUES (@BikeMakeName,GETDATE());
 
 	SET @MakeId=SCOPE_IDENTITY();
 END
