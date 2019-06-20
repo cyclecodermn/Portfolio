@@ -19,7 +19,7 @@ namespace GuildBikes.Utilities
         public static BikeAddViewModel InitBikeModel(BikeAddViewModel model)
         {
             var MakeRepo = MakeRepoFactory.GetRepo();
-            model.BikeMakes = new SelectList(MakeRepo.GetAll(), "BikeMakeId", "BikeMake");
+            model.BikeMakes = new SelectList(MakeRepo.GetAll(), "BikeMakeNameId", "BikeMake");
 
             var ModelRepo = ModelRepoFactory.GetRepo();
             model.BikeModels = new SelectList(ModelRepo.GetAll(), "BikeModelId", "BikeModel");
@@ -63,7 +63,7 @@ namespace GuildBikes.Utilities
         public static BikeEditViewModel InitBikeModel(BikeEditViewModel model)
         {
             var MakeRepo = MakeRepoFactory.GetRepo();
-            model.BikeMakes = new SelectList(MakeRepo.GetAll(), "BikeMakeId", "BikeMake");
+            model.BikeMakes = new SelectList(MakeRepo.GetAll(), "BikeMakeNameId", "BikeMake");
 
             var ModelRepo = ModelRepoFactory.GetRepo();
             model.BikeModels = new SelectList(ModelRepo.GetAll(), "BikeModelId", "BikeModel");

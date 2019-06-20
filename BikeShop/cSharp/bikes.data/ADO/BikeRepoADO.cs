@@ -77,7 +77,7 @@ namespace bikes.data.ADO
                 cmd.Parameters.Add(param);
 
                 //cmd.Parameters.AddWithValue("@BikeId", bike.BikeId);
-                cmd.Parameters.AddWithValue("@BikeMakeId", bike.BikeMakeId);
+                cmd.Parameters.AddWithValue("@BikeMakeNameId", bike.BikeMakeNameId);
                 cmd.Parameters.AddWithValue("@BikeModelId", bike.BikeModelId);
                 cmd.Parameters.AddWithValue("@BikeFrameColorId", bike.BikeFrameColorId);
                 cmd.Parameters.AddWithValue("@BikeTrimColorId", bike.BikeTrimColorId);
@@ -108,7 +108,7 @@ namespace bikes.data.ADO
                 cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("@BikeId", bike.BikeId);
-                cmd.Parameters.AddWithValue("@BikeMakeId", bike.BikeMakeId);
+                cmd.Parameters.AddWithValue("@BikeMakeNameId", bike.BikeMakeNameId);
                 cmd.Parameters.AddWithValue("@BikeModelId", bike.BikeModelId);
                 cmd.Parameters.AddWithValue("@BikeFrameColorId", bike.BikeFrameColorId);
                 cmd.Parameters.AddWithValue("@BikeTrimColorId", bike.BikeTrimColorId);
@@ -422,7 +422,7 @@ namespace bikes.data.ADO
         //    query += " BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName";
 
         //    query += " FROM BikeTable bt ";
-        //    query += " INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId ";
+        //    query += " INNER JOIN BikeMakeTable mk ON mk.BikeMakeNameId = bt.BikeMakeNameId ";
         //    query += " INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId ";
 
         //    query += " INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId ";

@@ -231,7 +231,7 @@ namespace bikes.tests.IntegrationTests
             var repo = new BikeRepoADO();
 
             //            BikeToAdd.BikeId =
-            BikeToAdd.BikeMakeId = 3;
+            BikeToAdd.BikeMakeNameId = 3;
             BikeToAdd.BikeModelId = 3;
             BikeToAdd.BikeFrameColorId = 3;
             BikeToAdd.BikeTrimColorId = 3;
@@ -257,7 +257,7 @@ namespace bikes.tests.IntegrationTests
             BikeTable BikeToAdd = new BikeTable();
             var repo = new BikeRepoADO();
 
-            BikeToAdd.BikeMakeId = 3;
+            BikeToAdd.BikeMakeNameId = 3;
             BikeToAdd.BikeModelId = 3;
             BikeToAdd.BikeFrameColorId = 3;
             BikeToAdd.BikeTrimColorId = 3;
@@ -276,7 +276,7 @@ namespace bikes.tests.IntegrationTests
 
             BikeTable BikeToUpdate = new BikeTable();
 
-            BikeToAdd.BikeMakeId = 1;
+            BikeToAdd.BikeMakeNameId = 1;
             BikeToAdd.BikeModelId = 1;
             BikeToAdd.BikeFrameColorId = 1;
             BikeToAdd.BikeTrimColorId = 2;
@@ -295,7 +295,7 @@ namespace bikes.tests.IntegrationTests
 
             var updatedBike = repo.GetById(3);
 
-            Assert.AreEqual(1, BikeToAdd.BikeMakeId);
+            Assert.AreEqual(1, BikeToAdd.BikeMakeNameId);
             Assert.AreEqual(1, BikeToAdd.BikeModelId);
             Assert.AreEqual(1, BikeToAdd.BikeFrameColorId);
             Assert.AreEqual(2, BikeToAdd.BikeTrimColorId);
@@ -317,7 +317,7 @@ namespace bikes.tests.IntegrationTests
             BikeTable BikeToAdd = new BikeTable();
             var repo = new BikeRepoADO();
 
-            BikeToAdd.BikeMakeId = 3;
+            BikeToAdd.BikeMakeNameId = 3;
             BikeToAdd.BikeModelId = 3;
             BikeToAdd.BikeFrameColorId = 3;
             BikeToAdd.BikeTrimColorId = 3;
@@ -440,11 +440,11 @@ namespace bikes.tests.IntegrationTests
             BikeMakeTable MakeToAdd = new BikeMakeTable();
             var repo = new MakeRepoADO();
 
-            //MakeToAdd.BikeMakeId = 4;
+            //MakeToAdd.BikeMakeNameId = 4;
             MakeToAdd.BikeMakeName = "329-1858";
 
             repo.Insert(MakeToAdd);
-            Assert.AreEqual(5, MakeToAdd.BikeMakeId);
+            Assert.AreEqual(5, MakeToAdd.BikeMakeNameId);
         }
 
     }

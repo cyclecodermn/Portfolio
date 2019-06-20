@@ -8,7 +8,7 @@ namespace bikes.models.Queries
 {
     class AdminAddMake
     {
-        public int BikeMakeId { get; set; }
+        public int BikeMakeNameId { get; set; }
         public int BikeModelId { get; set; }
         public string BikeMake { get; set; }
         public DateTime MakeAddedDate { get; set; }

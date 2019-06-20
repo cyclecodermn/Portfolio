@@ -13,7 +13,7 @@ namespace bikes.models.Tables
     {
         public string UserId { get; set; }
         public int BikeId { get; set; }
-        public int BikeMakeId { get; set; }
+        public int BikeMakeNameId { get; set; }
         public int BikeModelId { get; set; }
         public int BikeFrameColorId { get; set; }
         public int BikeTrimColorId { get; set; }
