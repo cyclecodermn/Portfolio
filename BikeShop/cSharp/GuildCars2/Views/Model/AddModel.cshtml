@@ -1,4 +1,4 @@
-﻿@model bikes.models.VMs.AddModelViewModel
+﻿@model bikes.models.Tables.BikeModelTable
 
 @{
     ViewBag.Title = "Add Model";
@@ -14,21 +14,16 @@
 
         @using (Html.BeginForm())
         {
-            @*@Html.HiddenFor(m => m.BikeModelId)*@
+            @Html.HiddenFor(m => m.BikeModelId)
             <div class="form-group">
 
-                @Html.TextBoxFor(m => m.NewBikeModel.BikeModelName, new { @class = "form-control", placeholder = "New Model Name" })
+                @Html.TextBoxFor(m => m.BikeModelName, new { @class = "form-control", placeholder = "New Model Name" })
             </div>
 
-            <div class="form-group">
-                <label>Make</label>
-                @Html.DropDownListFor(m => m.Bike.BikeMakeNameId, Model.BikeMakes, new { @class = "form-control" })
-            </div>
-
-            <span class="text-danger">@Html.ValidationMessageFor(m => m.NewBikeModel.BikeModelName)</span>
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.BikeModelId)</span>
             <br />
             <button type="submit" class="btn btn-sm btn-primary">Save</button>
-            @Html.ActionLink("Cancel", "MngModels", "Model", null, new { @class = "btn btn-sm btn-info" })
+            @Html.ActionLink("Cancel", "MngModels", "ModelName", null, new { @class = "btn btn-sm btn-info" })
         }
     </div>
 </div>      

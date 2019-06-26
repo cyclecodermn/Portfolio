@@ -40,6 +40,14 @@ namespace GuildBikes.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public ActionResult AddFrame()
+        {
+            BikeFrameTable frame = new BikeFrameTable();
+            //var frame = FrameRepoADO.GetById(frameId);
+            return View(frame);
+        }
+
         [HttpPost]
         public ActionResult AddFrame(BikeFrameTable frame)
         {
@@ -60,14 +68,6 @@ namespace GuildBikes.Controllers
             {
                 return View(frame);
             }
-        }
-
-        [HttpGet]
-        public ActionResult AddFrame()
-        {
-            BikeFrameTable frame = new BikeFrameTable();
-            //var frame = FrameRepoADO.GetById(frameId);
-            return View(frame);
         }
 
         [HttpPost]

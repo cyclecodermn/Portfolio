@@ -151,7 +151,7 @@ namespace bikes.data.ADO.AdoUtils
             query += " BikeYear,BikeIsNew,BikeCondition,BikeNumGears,BikeSerialNum,BikeDescription,BikePictName";
 
             query += " FROM BikeTable bt ";
-            query += " INNER JOIN BikeMakeTable mk ON mk.BikeMakeNameId = bt.BikeMakeNameId ";
+            query += " INNER JOIN BikeMakeTable mk ON mk.BikeMakeId = bt.BikeMakeId ";
             query += " INNER JOIN BikeModelTable md ON md.BikeModelId = bt.BikeModelId ";
 
             query += " INNER JOIN BikeFrameTable fr ON fr.BikeFrameId = bt.BikeFrameId ";

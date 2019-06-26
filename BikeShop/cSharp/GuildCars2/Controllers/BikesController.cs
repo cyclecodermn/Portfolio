@@ -13,6 +13,11 @@ using bikes.models.Tables;
 using bikes.models.VMs;
 using GuildBikes.Utilities;
 
+//The bike make refers to the manufacturer or company that produced the bike,
+//while the bike model refers to the bike product itself and its
+//registered identification name.
+//Bike models are identifiable and comprised of names, initials, or numbers.
+
 namespace GuildBikes.Controllers
 {
     public class BikesController : Controller
