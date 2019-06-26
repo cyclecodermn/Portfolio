@@ -1,0 +1,47 @@
+﻿@model bikes.models.VMs.MakesListViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Manage Makes</title>
+</head>
+<body>
+
+    <div class="row">
+        @Html.Partial("_SideNavPartial")
+        <div class="col-xs-9">
+
+
+            <table class="table table-striped" style="width: 40%;">
+                <h3>Manage Makes</h3>
+                
+                <tbody>
+                    @foreach (var make in Model.BikeMakes)
+
+                    {
+                        <tr>
+                            <td>@make.BikeMakeName</td>
+                            <td align="right">
+                                @Html.ActionLink("Edit", "EditMake", "Make", new { makeId = make.BikeMakeId }, null) |
+                                @Html.ActionLink("Delete", "DeleteMake", "Make", new { makeId = make.BikeMakeId }, null)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+            <br />
+            @Html.ActionLink("Add Make", "AddMake", "Make", null, new { @class = "btn btn-primary" })
+
+        </div>
+    </div>
+
+</body>
+</html>

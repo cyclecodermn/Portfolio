@@ -192,6 +192,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\FrameController.cs" />
+    <Compile Include="Controllers\MakeController.cs" />
     <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Controllers\SiteAdminController.cs" />
     <Compile Include="Global.asax.cs">
@@ -289,6 +290,10 @@
     <Content Include="Views\Model\DeleteModel.cshtml" />
     <Content Include="Views\Model\EditModel.cshtml" />
     <Content Include="Views\Model\MngModels.cshtml" />
+    <Content Include="Views\Make\AddMake.cshtml" />
+    <Content Include="Views\Make\DeleteMake.cshtml" />
+    <Content Include="Views\Make\EditMake.cshtml" />
+    <Content Include="Views\Make\MngMakes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -68,7 +68,6 @@ namespace bikes.data.ADO
             }
         }
 
-
         public void Edit(BikeFrameTable Frame)
         {
             using (var cn = new SqlConnection(Settings.GetConnectionString()))

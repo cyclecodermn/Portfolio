@@ -1,0 +1,38 @@
+﻿@using bikes.models.Tables
+@using bikes.models.VMs
+@model bikes.models.VMs.MakeDeleteViewModel
+
+@{
+    ViewBag.Title = "DeleteMake";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
+    <div class="col-xs-9">
+        <h3>Delete Make</h3>
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.Make.BikeMakeId)
+
+            if (Model.message.IsEmpty())
+            {
+                using (Html.BeginForm())
+                {
+                    <p>Are you sure that you wish to delete the make <b>@Html.DisplayFor(m => m.Make.BikeMake)</b>?</p>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete2</button>
+                    @*@Html.ActionLink("Delete3", "DeleteMake", "Make", new { MakeToDelete=Model.Make }, new { @class = "btn btn-sm btn-danger" })*@
+                    @Html.ActionLink("Cancel", "MngMakes", "Make", null, new { @class = "btn btn-sm btn-info" })
+                }
+            }
+            else
+            {
+                @Model.message<p></p>
+                @Html.ActionLink("Return to List", "MngMakes", "Make", null, new { @class = "btn btn-sm btn-info" })
+
+            }
+        }
+
+    </div>
+</div>   

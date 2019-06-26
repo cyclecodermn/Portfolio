@@ -1,0 +1,29 @@
+﻿@model bikes.models.Tables.BikeMakeTable
+
+@{
+    ViewBag.Title = "Edit Make";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
+    <div class="col-xs-9">
+        <h3>Edit Make</h3>
+
+        @Html.ValidationSummary()
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.BikeMakeId)
+            <div class="form-group">
+
+                @Html.TextBoxFor(m => m.BikeMakeName, new { @class = "form-control", placeholder = "Make" })
+            </div>
+
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.BikeMakeId)</span>
+            <br />
+            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+            @Html.ActionLink("Cancel", "MngMakes", "Make", null, new { @class = "btn btn-sm btn-info" })
+        }
+    </div>
+</div>      

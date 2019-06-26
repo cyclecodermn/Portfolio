@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using bikes.models.Tables;
+using bikes.models.Queries;
+using bikes.data.ADO.AdoUtils;
 
 namespace bikes.data.ADO
 {
@@ -65,6 +67,78 @@ namespace bikes.data.ADO
             }
         }
 
+
+        public void Edit(BikeMakeTable Make)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("MakeUpdate", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@BikeMakeId", Make.BikeMakeId);
+                cmd.Parameters.AddWithValue("@BikeMakeName", Make.BikeMakeName);
+                //cmd.Parameters.AddWithValue("@UserId", Make.UserId);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static IEnumerable<BikeShortItem> CheckIfMakeIsUsed(BikeMakeTable MakeToDelete)
+        {
+
+            BikeSearchParameters parameters = new BikeSearchParameters();
+            parameters.MakeModelOrYr = MakeToDelete.BikeMakeName;
+
+            SearchAll BikeSearch = new SearchAll();
+
+            IEnumerable<BikeShortItem> BikesWithMake = BikeSearch.Search2(parameters);
+
+            return BikesWithMake;
+        }
+
+        public static void Delete(int MakeIdToDelete)
+        {
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("MakeDelete", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@BikeMakeId", MakeIdToDelete);
+
+                cn.Open();
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+
+        public static BikeMakeTable GetById(int frameId)
+        {
+            BikeMakeTable Make = null;
+
+            using (var cn = new SqlConnection(Settings.GetConnectionString()))
+            {
+                SqlCommand cmd = new SqlCommand("MakeSelect", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("@BikeMakeId", frameId);
+
+                cn.Open();
+
+                using (SqlDataReader dr = cmd.ExecuteReader())
+                {
+                    if (dr.Read())
+                    {
+                        Make = new BikeMakeTable();
+                        Make.BikeMakeId = (int)dr["BikeMakeId"];
+                        Make.BikeMakeName = (string)dr["BikeMakeName"];
+                        // Make.UserId = dr["UserId"].ToString();
+
+                    }
+                }
+            }
+
+            return Make;
+        }
 
     }
 }
