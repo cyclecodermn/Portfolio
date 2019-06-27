@@ -686,3 +686,56 @@ BEGIN
 	FROM BikeMakeTable
 END
 GO
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'MakeSelect')
+		DROP PROCEDURE MakeSelect
+GO
+
+CREATE PROCEDURE MakeSelect (
+	@BikeMakeId int
+
+) AS
+BEGIN
+	SELECT BikeMakeId, BikeMakeName
+	FROM BikeMakeTable
+	WHERE BikeMakeId = @BikeMakeId
+
+END
+GO
+-- -  -   -    -     -      -       -        -
+-- -  -   -    -     -      -       -        -
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+   WHERE ROUTINE_NAME = 'MakeDelete')
+      DROP PROCEDURE MakeDelete
+GO
+
+CREATE PROCEDURE MakeDelete (
+	@BikeMakeId int
+
+) AS
+BEGIN
+	DELETE FROM BikeMakeTable
+	WHERE BikeMakeId = @BikeMakeId
+END
+GO
+-- -  -   -    -     -      -       -        -
+
+IF EXISTS(SELECT * FROM INFORMATION_SCHEMA.ROUTINES
+	WHERE ROUTINE_NAME = 'MakeUpdate')
+		DROP PROCEDURE MakeUpdate
+GO
+
+CREATE PROCEDURE MakeUpdate (
+	@BikeMakeId			int,
+	@BikeMakeName			char(64)
+) AS
+BEGIN
+	UPDATE BikeMakeTable SET
+		BikeMakeName	= @BikeMakeName
+	WHERE BikeMakeId	= @BikeMakeId;
+END
+GO
+
+-- -  -   -    -     -      -       -        -
