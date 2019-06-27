@@ -131,6 +131,7 @@ namespace bikes.data.ADO
                         Make = new BikeMakeTable();
                         Make.BikeMakeId = (int)dr["BikeMakeId"];
                         Make.BikeMakeName = (string)dr["BikeMakeName"];
+                        Make.BikeMakeName = Make.BikeMakeName.TrimEnd();
                         // Make.UserId = dr["UserId"].ToString();
 
                     }
