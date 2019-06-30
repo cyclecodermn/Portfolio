@@ -30,7 +30,7 @@ namespace bikes.data.ADO
                     {
                         BikeColorTable currentRow = new BikeColorTable();
                         currentRow.BikeColorId = (int) dr["BikeColorId"];
-                        currentRow.BikeColor = dr["BikeColor"].ToString();
+                        currentRow.BikeColorName = dr["BikeColor"].ToString();
 
                         Models.Add(currentRow);
                     }
@@ -53,7 +53,7 @@ namespace bikes.data.ADO
                 cmd.Parameters.Add(param);
 
  //               cmd.Parameters.AddWithValue("@ModelId", NewModel.BikeColorId);
-                cmd.Parameters.AddWithValue("@BikeColor", NewModel.BikeColor);
+                cmd.Parameters.AddWithValue("@BikeColor", NewModel.BikeColorName);
 
                 cn.Open();
 

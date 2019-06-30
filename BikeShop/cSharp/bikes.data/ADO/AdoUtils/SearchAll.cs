@@ -24,6 +24,9 @@ namespace bikes.data.ADO.AdoUtils
             MakeRepoADO MakeRepo = new MakeRepoADO();
             List<BikeMakeTable> AllMakes = MakeRepo.GetAll();
 
+            ColorRepoADO ColorRepo = new ColorRepoADO();
+            List<BikeColorTable> AllColors = ColorRepo.GetAll();
+
             List<int> AllYears = new List<int>();
             for (int i = 2000; i <= DateTime.Now.Year; i++)
                 AllYears.Add(i);
@@ -92,6 +95,14 @@ namespace bikes.data.ADO.AdoUtils
                     if (isMake)
                     {
                         query += "AND BikeMakeName LIKE @MakeModelOrYr ";
+                        cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
+                    }
+
+                    bool isColor = AllColors.Any(p => p.BikeColorName == parameters.MakeModelOrYr);
+
+                    if (isColor)
+                    {
+                        query += "AND c.BikeColor LIKE @MakeModelOrYr ";
                         cmd.Parameters.AddWithValue("@MakeModelOrYr", parameters.MakeModelOrYr + '%');
                     }
 

@@ -10,7 +10,7 @@ namespace bikes.models.Tables
     public class BikeColorTable
     {
     public int BikeColorId { get; set; }
-    public string BikeColor { get; set; }
+    public string BikeColorName { get; set; }
     public DateTime ModelAddedDate { get; set; }
 
     }
