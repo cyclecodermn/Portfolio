@@ -15,12 +15,18 @@
         @using (Html.BeginForm())
         {
             @Html.HiddenFor(m => m.Make.BikeMakeId)
+            @Html.DisplayFor(m => m.Make.BikeMakeId)
 
             if (Model.message.IsEmpty())
             {
                 using (Html.BeginForm())
                 {
-                    <p>Are you sure that you wish to delete the make <b>@Html.DisplayFor(m => m.Make.BikeMakeName)</b>?</p>
+        <p>
+            Are you sure that you wish to delete the make
+            <b>@Html.DisplayFor(m => m.Make.BikeMakeName)</b> id @Html.DisplayFor(m => m.Make.BikeMakeId)
+
+            ?
+        </p>
                     <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                     @Html.ActionLink("Cancel", "MngMakes", "Make", null, new { @class = "btn btn-sm btn-info" })
                 }

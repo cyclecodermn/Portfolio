@@ -118,9 +118,9 @@ namespace GuildBikes.Controllers
         }
 
         [HttpPost]
-        public ActionResult DeleteMake(BikeMakeTable model)
+        public ActionResult DeleteMake(MakeDeleteViewModel model)
         {
-            MakeRepoADO.Delete(model.BikeMakeId);
+            MakeRepoADO.Delete(model.Make.BikeMakeId);
             return RedirectToAction("MngMakes");
 
         }
