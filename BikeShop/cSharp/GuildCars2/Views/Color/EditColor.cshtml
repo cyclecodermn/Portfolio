@@ -1,0 +1,29 @@
+﻿@model bikes.models.Tables.BikeColorTable
+
+@{
+    ViewBag.Title = "Edit Color";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
+    <div class="col-xs-9">
+        <h3>Edit Color</h3>
+
+        @Html.ValidationSummary()
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.BikeColorId)
+            <div class="form-group">
+
+                @Html.TextBoxFor(m => m.BikeColorName, new { @class = "form-control", placeholder = "Color" })
+            </div>
+
+            <span class="text-danger">@Html.ValidationMessageFor(m => m.BikeColorId)</span>
+            <br />
+            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+            @Html.ActionLink("Cancel", "MngColors", "Color", null, new { @class = "btn btn-sm btn-info" })
+        }
+    </div>
+</div>      

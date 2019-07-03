@@ -1,0 +1,38 @@
+﻿@using bikes.models.Tables
+@using bikes.models.VMs
+@model bikes.models.VMs.ColorDeleteViewModel
+
+@{
+    ViewBag.Title = "DeleteColor";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    @Html.Partial("~/Views/Shared/_SideNavPartial.cshtml")
+    <div class="col-xs-9">
+        <h3>Delete Color</h3>
+
+        @using (Html.BeginForm())
+        {
+            @Html.HiddenFor(m => m.Color.BikeColorId)
+
+            if (Model.message.IsEmpty())
+            {
+                using (Html.BeginForm())
+                {
+                    <p>Are you sure that you wish to delete the color <b>@Html.DisplayFor(m => m.Color.BikeColorName)</b>?</p>
+                    <button type="submit" class="btn btn-sm btn-danger">Delete2</button>
+                    @*@Html.ActionLink("Delete3", "DeleteColor", "Color", new { ColorToDelete=Model.Color }, new { @class = "btn btn-sm btn-danger" })*@
+                    @Html.ActionLink("Cancel", "MngColors", "Color", null, new { @class = "btn btn-sm btn-info" })
+                }
+            }
+            else
+            {
+                @Model.message<p></p>
+                @Html.ActionLink("Return to List", "MngColors", "Color", null, new { @class = "btn btn-sm btn-info" })
+
+            }
+        }
+
+    </div>
+</div>   

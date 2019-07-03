@@ -61,7 +61,7 @@ GO
 CREATE TABLE BikeColorTable ( 
 	BikeColorId		int primary key identity(1,1) not null,
 	BikeColor		nvarchar(32) NOT NULL,
-	MakeAddedDate	datetime NOT NULL DEFAULT GETDATE(),
+	ColorAddedDate	datetime NOT NULL DEFAULT GETDATE(),
  )
 GO 
 

@@ -1,0 +1,47 @@
+﻿@model bikes.models.VMs.ColorsListViewModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Manage Colors</title>
+</head>
+<body>
+
+    <div class="row">
+        @Html.Partial("_SideNavPartial")
+        <div class="col-xs-9">
+
+
+            <table class="table table-striped" style="width: 40%;">
+                <h3>Manage Colors</h3>
+                
+                <tbody>
+                    @foreach (var color in Model.BikeColors)
+
+                    {
+                        <tr>
+                            <td>@color.BikeColorName</td>
+                            <td align="right">
+                                @Html.ActionLink("Edit", "EditColor", "Color", new { colorId = color.BikeColorId }, null) |
+                                @Html.ActionLink("Delete", "DeleteColor", "Color", new { colorId = color.BikeColorId }, null)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+            <br />
+            @Html.ActionLink("Add Color", "AddColor", "Color", null, new { @class = "btn btn-primary" })
+
+        </div>
+    </div>
+
+</body>
+</html>

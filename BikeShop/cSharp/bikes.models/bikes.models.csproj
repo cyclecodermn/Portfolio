@@ -92,6 +92,8 @@
     <Compile Include="Tables\PurchaseTable.cs" />
     <Compile Include="Tables\SpecialTable.cs" />
     <Compile Include="VMs\AddModelViewModel.cs" />
+    <Compile Include="VMs\ColorListViewModel.cs" />
+    <Compile Include="VMs\ColorDeleteViewModel.cs" />
     <Compile Include="VMs\MakeDeleteViewModel.cs" />
     <Compile Include="VMs\ModelDeleteViewModel.cs" />
     <Compile Include="VMs\FrameDeleteViewModel.cs" />

@@ -189,6 +189,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BikesAPIController.cs" />
     <Compile Include="Controllers\BikesController.cs" />
+    <Compile Include="Controllers\ColorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\FrameController.cs" />
@@ -294,6 +295,10 @@
     <Content Include="Views\Make\DeleteMake.cshtml" />
     <Content Include="Views\Make\EditMake.cshtml" />
     <Content Include="Views\Make\MngMakes.cshtml" />
+    <Content Include="Views\Color\AddColor.cshtml" />
+    <Content Include="Views\Color\DeleteColor.cshtml" />
+    <Content Include="Views\Color\EditColor.cshtml" />
+    <Content Include="Views\Color\MngColors.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
