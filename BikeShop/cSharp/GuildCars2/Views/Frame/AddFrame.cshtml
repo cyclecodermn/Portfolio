@@ -10,14 +10,14 @@
     <div class="col-xs-9">
         <h3>Add Frame</h3>
 
-        @Html.ValidationSummary()
-
         @using (Html.BeginForm())
         {
             @Html.HiddenFor(m => m.BikeFrameId)
             <div class="form-group">
 
                 @Html.TextBoxFor(m => m.BikeFrame, new { @class = "form-control", placeholder = "New Frame Name" })
+                <span class="text-danger">@Html.ValidationMessageFor(m => m.BikeFrame)</span>
+
             </div>
 
             <span class="text-danger">@Html.ValidationMessageFor(m => m.BikeFrameId)</span>
