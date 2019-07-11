@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -49,6 +50,7 @@
     <Compile Include="ADO\MakeRepoADO.cs" />
     <Compile Include="ADO\ModelRepoADO.cs" />
     <Compile Include="ADO\FrameRepoADO.cs" />
+    <Compile Include="Attributes\FrameDoesNotExist.cs" />
     <Compile Include="Factories\BikeRepoFactory.cs" />
     <Compile Include="Factories\MakeRepoFactory.cs" />
     <Compile Include="Factories\FrameRepoFactory.cs" />

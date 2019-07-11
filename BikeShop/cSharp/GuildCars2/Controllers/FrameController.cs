@@ -44,7 +44,6 @@ namespace GuildBikes.Controllers
         public ActionResult AddFrame()
         {
             BikeFrameTable frame = new BikeFrameTable();
-            //var frame = FrameRepoADO.GetById(frameId);
             return View(frame);
         }
 
@@ -61,7 +60,6 @@ namespace GuildBikes.Controllers
             {
                 FrameRepoADO repo = new FrameRepoADO();
                 repo.Insert(frame);
-                //MajorRepository.Edit(major);
                 return RedirectToAction("MngFrames");
             }
             else
